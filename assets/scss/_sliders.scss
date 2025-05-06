@@ -1,0 +1,113 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Стили для слайдера продуктов
+.productsSwiper {
+  padding-bottom: 50px; // Место для пагинации
+  position: relative; // Важно для правильного позиционирования кнопок
+  
+  .swiper-slide {
+    height: auto; // Чтобы слайды были одинаковой высоты
+  }
+  
+  .product-card {
+    height: 100%; // Чтобы карточка занимала весь слайд
+  }
+  
+  // Улучшенные стили для кнопок навигации
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: $white; // Белый цвет для лучшей видимости
+    background-color: $primary-color; // Бордовый фон
+    width: 50px; // Увеличиваем размер
+    height: 50px; // Увеличиваем размер
+    border-radius: 50%; // Круглые кнопки
+    opacity: 0.9; // Немного прозрачности
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Добавляем тень
+    
+    // Центрируем стрелку внутри кнопки
+    &:after {
+      font-size: 22px; // Увеличиваем размер стрелки
+      font-weight: bold; // Делаем стрелку жирнее
+    }
+    
+    // Эффект при наведении
+    &:hover {
+      background-color: $secondary-color; // Меняем цвет при наведении
+      color: $white;
+      opacity: 1;
+      transform: scale(1.1); // Немного увеличиваем при наведении
+    }
+  }
+  
+  // Позиционирование кнопок
+  .swiper-button-next {
+    right: 15px; // Немного дальше от края
+  }
+  
+  .swiper-button-prev {
+    left: 15px; // Немного дальше от края
+  }
+  
+  // Стили для пагинации
+  .swiper-pagination-bullet {
+    width: 12px; // Увеличиваем размер точек
+    height: 12px; // Увеличиваем размер точек
+    background-color: $text-light;
+    opacity: 0.5;
+    
+    &-active {
+      background-color: $primary-color;
+      opacity: 1;
+    }
+  }
+  
+  // Медиа-запрос для больших экранов
+  @include media-breakpoint-up(lg) {
+    // Увеличиваем отступы для кнопок на больших экранах
+    .swiper-button-next {
+      right: -25px;
+    }
+    
+    .swiper-button-prev {
+      left: -25px;
+    }
+  }
+}
+
+// Добавляем анимацию для привлечения внимания к кнопкам при загрузке страницы
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Применяем анимацию к кнопкам при загрузке страницы
+.swiper-button-next,
+.swiper-button-prev {
+  animation: pulse 2s ease-in-out 1s; // Запускаем анимацию через 1 секунду после загрузки
+}
+
+// Стиль для подсветки кнопок
+.highlight-button {
+  animation: highlight 1s ease-in-out;
+  z-index: 100;
+}
+
+@keyframes highlight {
+  0%, 100% {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px 5px $accent-color;
+  }
+}
