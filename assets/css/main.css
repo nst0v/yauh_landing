@@ -908,7 +908,67 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+.products .swiper-button-next,
+.products .swiper-button-prev {
+  color: #D70040;
+  transition: all 0.5s ease;
+}
+@media (max-width: 767px) {
+  .products .swiper-button-next,
+  .products .swiper-button-prev {
+    display: none !important;
+  }
+}
+.products .swiper-button-next.highlight-button,
+.products .swiper-button-prev.highlight-button {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 10px #D70040);
+  animation: pulse-navigation 1.5s infinite alternate;
+  transition: all 0.5s ease;
+}
+.products .swiper-button-next.highlight-button-fading,
+.products .swiper-button-prev.highlight-button-fading {
+  animation: none;
+  transform: scale(1);
+  filter: drop-shadow(0 0 0px #D70040);
+  transition: all 3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.products .swiper {
+  position: relative;
+}
+@media (max-width: 767px) {
+  .products .swiper:after {
+    content: "Свайпните для просмотра";
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #CCCCCC;
+    font-size: 14px;
+    opacity: 0.8;
+    white-space: nowrap;
+    animation: fade-in-out 3s infinite;
+  }
+}
 
+@keyframes pulse-navigation {
+  0% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 5px #D70040);
+  }
+  100% {
+    transform: scale(1.3);
+    filter: drop-shadow(0 0 15px #D70040);
+  }
+}
+@keyframes fade-in-out {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
 .product-card {
   text-align: center;
   padding: 30px;

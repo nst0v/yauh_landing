@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         spaceBetween: 30,
         loop: true,
         autoplay: {
-            delay: 4000, // Автопрокрутка каждые 5 секунд
+            delay: 4000, // Автопрокрутка каждые 4 секунды
             disableOnInteraction: false,
         },
         pagination: {
@@ -32,7 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    setTimeout(function() {
+    // Функция для мигания кнопок навигации с плавным затуханием
+    function pulseNavigationButtons() {
         const nextButton = document.querySelector('.swiper-button-next');
         const prevButton = document.querySelector('.swiper-button-prev');
         
@@ -41,11 +42,24 @@ document.addEventListener('DOMContentLoaded', function() {
             nextButton.classList.add('highlight-button');
             prevButton.classList.add('highlight-button');
             
-            // Удаляем класс через 2 секунды
+            // Вместо резкого удаления класса, добавляем класс для плавного затухания
             setTimeout(function() {
-                nextButton.classList.remove('highlight-button');
-                prevButton.classList.remove('highlight-button');
-            }, 2000);
+                nextButton.classList.add('highlight-button-fading');
+                prevButton.classList.add('highlight-button-fading');
+                
+                // Удаляем оба класса через 3 секунды (время затухания)
+                setTimeout(function() {
+                    nextButton.classList.remove('highlight-button');
+                    prevButton.classList.remove('highlight-button');
+                    nextButton.classList.remove('highlight-button-fading');
+                    prevButton.classList.remove('highlight-button-fading');
+                    
+                    // Больше не повторяем мигание
+                }, 3000); // 3 секунды на затухание
+            }, 5000); // 5 секунд активной подсветки
         }
-    }, 3000);
+    }
+
+    // Запускаем мигание кнопок через 3 секунды после загрузки
+    setTimeout(pulseNavigationButtons, 3000);
 });
