@@ -708,6 +708,7 @@ textarea.form-control {
 @media (max-width: 575px) {
   .features__grid {
     grid-template-columns: 1fr;
+    gap: 15px;
   }
 }
 
@@ -733,14 +734,47 @@ textarea.form-control {
   margin: 0 auto;
   filter: drop-shadow(0 0 5px rgba(128, 0, 32, 0.5));
 }
+@media (max-width: 991px) {
+  .feature-card__icon img {
+    width: 200px;
+    height: 200px;
+  }
+}
+@media (max-width: 575px) {
+  .feature-card__icon img {
+    width: 120px;
+    height: 120px;
+  }
+}
 .feature-card__title {
   margin-bottom: 15px;
   font-size: 18px;
   color: #ffffff;
 }
+@media (max-width: 575px) {
+  .feature-card__title {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
 .feature-card__text {
   color: #CCCCCC;
   margin-bottom: 0;
+}
+@media (max-width: 575px) {
+  .feature-card__text {
+    font-size: 14px;
+  }
+}
+@media (max-width: 575px) {
+  .feature-card {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    max-height: 300px;
+    overflow: hidden;
+  }
 }
 
 .cases {

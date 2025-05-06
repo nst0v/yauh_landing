@@ -33,6 +33,7 @@
     
     @include media-breakpoint-down(sm) {
       grid-template-columns: 1fr;
+      gap: $spacing-md; // Уменьшаем отступы между карточками на мобильных
     }
   }
 }
@@ -59,6 +60,18 @@
       height: 300px;
       margin: 0 auto;
       filter: drop-shadow(0 0 5px rgba($primary-color, 0.5));
+      
+      // Уменьшаем размер изображений на планшетах
+      @include media-breakpoint-down(lg) {
+        width: 200px;
+        height: 200px;
+      }
+      
+      // Еще сильнее уменьшаем на мобильных
+      @include media-breakpoint-down(sm) {
+        width: 120px;
+        height: 120px;
+      }
     }
   }
   
@@ -66,10 +79,31 @@
     margin-bottom: $spacing-md;
     font-size: $font-size-lg;
     color: $white;
+    
+    // Уменьшаем размер заголовка на мобильных
+    @include media-breakpoint-down(sm) {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-sm;
+    }
   }
   
   &__text {
     color: $text-light;
     margin-bottom: 0;
+    
+    // Уменьшаем размер текста на мобильных
+    @include media-breakpoint-down(sm) {
+      font-size: $font-size-sm;
+    }
+  }
+  
+  // Изменяем стиль карточек на мобильных устройствах
+  @include media-breakpoint-down(sm) {
+    padding: $spacing-md; // Уменьшаем внутренние отступы
+    display: flex; // Меняем на флекс для горизонтального расположения
+    flex-direction: column; // Но оставляем вертикальное расположение элементов
+    text-align: left; // Выравниваем текст по левому краю
+    max-height: 300px; // Ограничиваем высоту карточки
+    overflow: hidden; // Скрываем контент, который не помещается
   }
 }
