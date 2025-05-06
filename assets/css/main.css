@@ -643,18 +643,6 @@ textarea.form-control {
   background-position: center;
   text-align: center;
 }
-.hero:after {
-  content: "";
-  position: absolute;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background-color: #800020;
-  transform: translateX(-50%) rotate(45deg);
-  z-index: 1;
-}
 @media (max-width: 767px) {
   .hero {
     padding: 120px 0 80px;
