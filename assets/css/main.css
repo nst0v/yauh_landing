@@ -760,6 +760,7 @@ textarea.form-control {
   background-color: #000000;
   background-image: radial-gradient(circle at top right, rgba(128, 0, 32, 0.1), transparent 70%);
   border-bottom: 1px solid rgba(128, 0, 32, 0.3);
+  overflow: hidden;
 }
 @media (max-width: 767px) {
   .cases {
@@ -769,20 +770,38 @@ textarea.form-control {
 .cases .section-title:after {
   background-color: #B22222;
 }
-.cases__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
+.cases .container {
+  max-width: 100%;
+  padding: 0;
 }
-@media (max-width: 991px) {
-  .cases__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.cases .section-title {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px;
+  margin-bottom: 50px;
 }
-@media (max-width: 575px) {
-  .cases__grid {
-    grid-template-columns: 1fr;
-  }
+.cases__row {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.cases__row:last-child {
+  margin-bottom: 0;
+}
+.cases__track {
+  display: flex;
+  width: fit-content;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.cases__row--right .cases__track {
+  animation-name: infiniteScrollRight;
+}
+.cases__row--left .cases__track {
+  animation-name: infiniteScrollLeft;
 }
 
 .case-card {
@@ -793,6 +812,9 @@ textarea.form-control {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   border-top: 3px solid #B22222;
+  width: 300px;
+  margin-right: 30px;
+  flex-shrink: 0;
 }
 .case-card:hover {
   transform: translateY(-5px);
@@ -802,8 +824,8 @@ textarea.form-control {
   margin-bottom: 15px;
 }
 .case-card__icon img {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   margin: 0 auto;
   filter: drop-shadow(0 0 5px rgba(128, 0, 32, 0.5));
 }
@@ -815,6 +837,45 @@ textarea.form-control {
 .case-card__text {
   color: #CCCCCC;
   margin-bottom: 0;
+}
+
+@keyframes infiniteScrollRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes infiniteScrollLeft {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 767px) {
+  .case-card {
+    width: 250px;
+  }
+}
+@media (max-width: 575px) {
+  .case-card {
+    width: 200px;
+  }
+}
+.cases__track {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.cases__row {
+  pointer-events: none;
+}
+
+.case-card {
+  pointer-events: auto;
 }
 
 .products {

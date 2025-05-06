@@ -6,6 +6,7 @@
   background-color: $background-color;
   background-image: radial-gradient(circle at top right, rgba($primary-color, 0.1), transparent 70%);
   border-bottom: 1px solid $section-border-color;
+  overflow: hidden; // Важно для скрытия элементов за пределами контейнера
   
   @include media-breakpoint-down(md) {
     padding: $spacing-xl 0;
@@ -13,25 +14,58 @@
   
   .section-title {
     &:after {
-      background-color: $secondary-color; // Другой цвет для разнообразия
+      background-color: $secondary-color;
     }
   }
   
-  &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-lg;
+  // Контейнер для секции кейсов должен быть на всю ширину экрана
+  .container {
+    max-width: 100%; // Изменяем с фиксированной ширины на 100%
+    padding: 0; // Убираем отступы контейнера
+  }
+  
+  // Заголовок секции должен быть в центре с нормальными отступами
+  .section-title {
+    max-width: $container-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 $container-padding;
+    margin-bottom: $spacing-xl;
+  }
+  
+  // Стили для рядов
+  &__row {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: $spacing-lg;
     
-    @include media-breakpoint-down(lg) {
-      grid-template-columns: repeat(2, 1fr);
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Трек для анимации
+  &__track {
+    display: flex;
+    width: fit-content; // Чтобы трек подстраивался под содержимое
+    animation-duration: 30s; // Длительность анимации
+    animation-timing-function: linear;
+    animation-iteration-count: infinite; // Бесконечное повторение
+    
+    // Верхний ряд - движется слева направо
+    .cases__row--right & {
+      animation-name: infiniteScrollRight;
     }
     
-    @include media-breakpoint-down(sm) {
-      grid-template-columns: 1fr;
+    // Нижний ряд - движется справа налево
+    .cases__row--left & {
+      animation-name: infiniteScrollLeft;
     }
   }
 }
 
+// Стили для карточек кейсов
 .case-card {
   text-align: center;
   padding: $spacing-lg;
@@ -40,6 +74,9 @@
   box-shadow: $box-shadow-sm;
   @include transition;
   border-top: 3px solid $secondary-color;
+  width: 300px; // Фиксированная ширина для прямоугольных карточек
+  margin-right: $spacing-lg; // Отступ между карточками
+  flex-shrink: 0; // Предотвращает сжатие карточек
   
   &:hover {
     transform: translateY(-5px);
@@ -50,8 +87,8 @@
     margin-bottom: $spacing-md;
     
     img {
-      width: 300px;
-      height: 300px;
+      width: 100px;
+      height: 100px;
       margin: 0 auto;
       filter: drop-shadow(0 0 5px rgba($primary-color, 0.5));
     }
@@ -67,4 +104,53 @@
     color: $text-light;
     margin-bottom: 0;
   }
+}
+
+// Анимация для бесконечного скролла слева направо (верхний ряд)
+@keyframes infiniteScrollRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% / 2)); // Смещение на половину ширины трека
+  }
+}
+
+// Анимация для бесконечного скролла справа налево (нижний ряд)
+@keyframes infiniteScrollLeft {
+  from {
+    transform: translateX(calc(-100% / 2)); // Начинаем с середины
+  }
+  to {
+    transform: translateX(0); // Двигаемся к началу
+  }
+}
+
+// Медиа-запросы для адаптивности
+@include media-breakpoint-down(md) {
+  .case-card {
+    width: 250px; // Уменьшаем ширину на планшетах
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .case-card {
+    width: 200px; // Еще уменьшаем ширину на мобильных
+  }
+}
+
+// Используем аппаратное ускорение для более плавной анимации
+.cases__track {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+// Предотвращаем взаимодействие с рядами, чтобы пользователь не мог остановить анимацию
+.cases__row {
+  pointer-events: none;
+}
+
+// Но разрешаем взаимодействие с самими карточками (если нужно)
+.case-card {
+  pointer-events: auto;
 }
