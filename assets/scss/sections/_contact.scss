@@ -1,0 +1,11 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.contact {
+  padding: $spacing-xxl 0;
+  background-color: $light-color;
+  
+  @include media-breakpoint-down(md) {
+    padding: $spacing-xl 0;
+  }
+}

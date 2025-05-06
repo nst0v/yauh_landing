@@ -1,0 +1,144 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $white;
+  box-shadow: $box-shadow-sm;
+  padding: $spacing-md 0;
+  z-index: 1000;
+  @include transition;
+  
+  .container {
+    @include flex(row, space-between, center);
+  }
+  
+  &.scrolled {
+    padding: $spacing-sm 0;
+    box-shadow: $box-shadow-md;
+  }
+}
+
+.logo {
+  img {
+    height: 40px;
+    
+    @include media-breakpoint-down(md) {
+      height: 35px;
+    }
+  }
+}
+
+.nav {
+  @include media-breakpoint-down(md) {
+    display: none;
+    
+    &.active {
+      display: block;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: $white;
+      box-shadow: $box-shadow-sm;
+      padding: $spacing-md 0;
+    }
+  }
+  
+  &__list {
+    @include flex(row, center, center);
+    
+    @include media-breakpoint-down(md) {
+      flex-direction: column;
+    }
+  }
+  
+  &__item {
+    margin: 0 $spacing-md;
+    
+    @include media-breakpoint-down(md) {
+      margin: $spacing-sm 0;
+    }
+  }
+  
+  &__link {
+    color: $text-color;
+    font-weight: $font-weight-medium;
+    padding: $spacing-sm;
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background-color: $primary-color;
+      @include transition;
+    }
+    
+    &:hover, &.active {
+      color: $primary-color;
+      
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: $spacing-sm;
+  
+  @include media-breakpoint-down(md) {
+    display: block;
+  }
+  
+  span, span:before, span:after {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: $text-color;
+    position: relative;
+    @include transition;
+  }
+  
+  span:before, span:after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+  
+  span:before {
+    top: -8px;
+  }
+  
+  span:after {
+    bottom: -8px;
+  }
+  
+  &.active {
+    span {
+      background-color: transparent;
+      
+      &:before {
+        top: 0;
+        transform: rotate(45deg);
+      }
+      
+      &:after {
+        bottom: 0;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}

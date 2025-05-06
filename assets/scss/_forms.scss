@@ -1,0 +1,74 @@
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.form-group {
+  margin-bottom: $spacing-lg;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: $spacing-sm;
+  font-weight: $font-weight-medium;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: $spacing-md;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  color: $text-color;
+  background-color: $white;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: $border-radius-md;
+  @include transition;
+  
+  &:focus {
+    color: $text-color;
+    background-color: $white;
+    border-color: color.adjust($primary-color, $lightness: 25%);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+  }
+  
+  &::placeholder {
+    color: $text-light;
+    opacity: 1;
+  }
+  
+  &:disabled,
+  &[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+  }
+}
+
+textarea.form-control {
+  height: auto;
+  resize: vertical;
+}
+
+.form-message {
+  margin-top: $spacing-md;
+  padding: $spacing-md;
+  border-radius: $border-radius-md;
+  
+  &--success {
+    background-color: rgba($success-color, 0.1);
+    color: $success-color;
+    border: 1px solid rgba($success-color, 0.2);
+  }
+  
+  &--error {
+    background-color: rgba($error-color, 0.1);
+    color: $error-color;
+    border: 1px solid rgba($error-color, 0.2);
+  }
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}

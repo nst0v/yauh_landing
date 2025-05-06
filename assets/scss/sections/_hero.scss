@@ -1,0 +1,40 @@
+@use '../variables' as *;
+@use '../mixins' as *;
+
+.hero {
+  padding: 150px 0 100px;
+  background-color: $light-color;
+  background-image: linear-gradient(rgba($white, 0.9), rgba($white, 0.9)), url('../img/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  
+  @include media-breakpoint-down(md) {
+    padding: 120px 0 80px;
+  }
+  
+  @include media-breakpoint-down(sm) {
+    padding: 100px 0 60px;
+  }
+  
+  &__title {
+    margin-bottom: $spacing-lg;
+    color: $dark-color;
+    
+    @include media-breakpoint-down(md) {
+      margin-bottom: $spacing-md;
+    }
+  }
+  
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: $text-light;
+    max-width: 700px;
+    margin: 0 auto $spacing-xl;
+    
+    @include media-breakpoint-down(md) {
+      font-size: $font-size-base;
+      margin-bottom: $spacing-lg;
+    }
+  }
+}

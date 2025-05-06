@@ -1,0 +1,68 @@
+// Цвета
+$primary-color: #4a6bff;
+$secondary-color: #ff6b4a;
+$dark-color: #333333;
+$light-color: #f8f9fa;
+$text-color: #333333;
+$text-light: #777777;
+$white: #ffffff;
+$black: #000000;
+$error-color: #dc3545;
+$success-color: #28a745;
+
+// Шрифты
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Montserrat', sans-serif;
+
+// Размеры шрифтов
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-xxl: 36px;
+$font-size-hero: 48px;
+
+// Толщина шрифта
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Высота строки
+$line-height-base: 1.6;
+$line-height-sm: 1.4;
+$line-height-lg: 1.8;
+
+// Контейнер
+$container-max-width: 1200px;
+$container-padding: 15px;
+
+// Брейкпоинты
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Отступы
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 15px;
+$spacing-lg: 30px;
+$spacing-xl: 50px;
+$spacing-xxl: 80px;
+
+// Радиусы
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 16px;
+$border-radius-pill: 50px;
+
+// Тени
+$box-shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+$box-shadow-md: 0 5px 15px rgba(0, 0, 0, 0.1);
+$box-shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+// Переходы
+$transition-base: all 0.3s ease;
+$transition-fast: all 0.2s ease;
+$transition-slow: all 0.5s ease;

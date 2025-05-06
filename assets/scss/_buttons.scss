@@ -1,0 +1,71 @@
+@use 'sass:color';
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.btn {
+  display: inline-block;
+  font-weight: $font-weight-medium;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  user-select: none;
+  border: 1px solid transparent;
+  padding: $spacing-md $spacing-lg;
+  font-size: $font-size-base;
+  line-height: 1.5;
+  border-radius: $border-radius-md;
+  @include transition;
+  cursor: pointer;
+  
+  &:focus, &:hover {
+    text-decoration: none;
+    outline: 0;
+  }
+  
+  &:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+  
+  // Размеры кнопок
+  &--sm {
+    padding: $spacing-sm $spacing-md;
+    font-size: $font-size-sm;
+  }
+  
+  &--lg {
+    padding: $spacing-lg $spacing-xl;
+    font-size: $font-size-lg;
+  }
+  
+  // Стили кнопок
+  &--primary {
+    @include button-style($primary-color, $white);
+  }
+  
+  &--secondary {
+    @include button-style($secondary-color, $white);
+  }
+  
+  &--outline-primary {
+    background-color: transparent;
+    border-color: $primary-color;
+    color: $primary-color;
+    
+    &:hover {
+      background-color: $primary-color;
+      color: $white;
+    }
+  }
+  
+  &--outline-secondary {
+    background-color: transparent;
+    border-color: $secondary-color;
+    color: $secondary-color;
+    
+    &:hover {
+      background-color: $secondary-color;
+      color: $white;
+    }
+  }
+}
