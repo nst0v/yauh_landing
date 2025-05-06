@@ -1,25 +1,20 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
-.features {
+.cases {
   padding: $spacing-xxl 0;
-  background-color: $background-color-alt;
-  position: relative;
+  background-color: $background-color;
+  background-image: radial-gradient(circle at top right, rgba($primary-color, 0.1), transparent 70%);
   border-bottom: 1px solid $section-border-color;
-  
-  // Добавим декоративный элемент сбоку
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 5px;
-    height: 100%;
-    background: linear-gradient(to bottom, $primary-color, $secondary-color);
-  }
   
   @include media-breakpoint-down(md) {
     padding: $spacing-xl 0;
+  }
+  
+  .section-title {
+    &:after {
+      background-color: $secondary-color; // Другой цвет для разнообразия
+    }
   }
   
   &__grid {
@@ -37,18 +32,18 @@
   }
 }
 
-.feature-card {
+.case-card {
   text-align: center;
   padding: $spacing-lg;
   border-radius: $border-radius-md;
   background-color: $dark-color;
   box-shadow: $box-shadow-sm;
   @include transition;
-  border-left: 3px solid $primary-color;
+  border-top: 3px solid $secondary-color;
   
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba($primary-color, 0.2);
+    box-shadow: 0 10px 20px rgba($secondary-color, 0.2);
   }
   
   &__icon {

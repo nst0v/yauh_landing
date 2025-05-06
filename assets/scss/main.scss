@@ -9,10 +9,13 @@
 // Компоненты
 @use 'buttons';
 @use 'forms';
+@use 'dividers';
 
 // Секции
 @use 'sections/header';
 @use 'sections/hero';
 @use 'sections/features';
+@use 'sections/cases';
+@use 'sections/products';
 @use 'sections/contact';
 @use 'sections/footer';

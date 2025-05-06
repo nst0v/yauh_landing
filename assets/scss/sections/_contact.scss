@@ -3,9 +3,46 @@
 
 .contact {
   padding: $spacing-xxl 0;
-  background-color: $light-color;
+  background-color: $background-color-alt;
+  background-image: linear-gradient(to right, rgba($primary-color, 0.1), transparent);
+  position: relative;
+  
+  // Добавим декоративный элемент
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30%;
+    height: 5px;
+    background: linear-gradient(to right, transparent, $accent-color);
+  }
   
   @include media-breakpoint-down(md) {
     padding: $spacing-xl 0;
+  }
+  
+  .section-title {
+    position: relative;
+    
+    &:before {
+      content: '✉'; // Декоративный символ
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: $accent-color;
+      opacity: 0.5;
+    }
+  }
+  
+  .contact-form {
+    background-color: rgba($dark-color, 0.7);
+    padding: $spacing-xl;
+    border-radius: $border-radius-lg;
+    box-shadow: 0 5px 15px rgba($black, 0.3);
+    border-left: 1px solid rgba($primary-color, 0.3);
+    border-top: 1px solid rgba($primary-color, 0.3);
   }
 }

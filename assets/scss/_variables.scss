@@ -1,14 +1,21 @@
 // Цвета
-$primary-color: #4a6bff;
-$secondary-color: #ff6b4a;
-$dark-color: #333333;
-$light-color: #f8f9fa;
-$text-color: #333333;
-$text-light: #777777;
+$background-color: #000000; // Черный фон
+$primary-color: #800020;    // Бордовый (основной)
+$secondary-color: #B22222;  // Огненно-красный (для акцентов)
+$accent-color: #D70040;     // Яркий красный для выделения
+$dark-color: #111111;       // Темный (для элементов на черном фоне)
+$light-color: #f8f9fa;      // Светлый цвет
+$text-color: #FFFFFF;       // Белый текст для основного контента
+$text-light: #CCCCCC;       // Светло-серый для второстепенного текста
 $white: #ffffff;
 $black: #000000;
 $error-color: #dc3545;
 $success-color: #28a745;
+// Добавим дополнительные оттенки для разделения секций
+$background-color-alt: #0A0A0A;     // Чуть светлее основного фона
+$background-color-dark: #050505;    // Чуть темнее основного фона
+$section-border-color: rgba($primary-color, 0.3); // Полупрозрачный бордовый для границ
+
 
 // Шрифты
 $font-primary: 'Roboto', sans-serif;

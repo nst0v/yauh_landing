@@ -2,13 +2,18 @@
 @use 'variables' as *;
 @use 'mixins' as *;
 
+body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
 // Заголовки
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-secondary;
   font-weight: $font-weight-bold;
   line-height: $line-height-sm;
   margin-bottom: $spacing-md;
-  color: $dark-color;
+  color: $white;
 }
 
 h1 {
@@ -58,6 +63,7 @@ h6 {
 // Параграфы
 p {
   margin-bottom: $spacing-md;
+  color: $text-color;
   
   &:last-child {
     margin-bottom: 0;
@@ -66,12 +72,12 @@ p {
 
 // Ссылки
 a {
-  color: $primary-color;
+  color: $accent-color;
   text-decoration: none;
   @include transition;
   
   &:hover {
-    color: color.adjust($primary-color, $lightness: -10%);
+    color: color.adjust($accent-color, $lightness: 10%);
   }
 }
 
@@ -93,6 +99,8 @@ a {
   text-align: center;
   margin-bottom: $spacing-xl;
   position: relative;
+  color: $white;
+  padding-bottom: $spacing-md;
   
   &:after {
     content: '';
@@ -101,5 +109,18 @@ a {
     height: 3px;
     background-color: $primary-color;
     margin: $spacing-sm auto 0;
+    position: relative;
+  }
+  
+  // Добавим декоративные элементы
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, $primary-color, transparent);
   }
 }

@@ -10,6 +10,7 @@
   display: block;
   margin-bottom: $spacing-sm;
   font-weight: $font-weight-medium;
+  color: $white; // Добавлено для уверенности
 }
 
 .form-control {
@@ -18,29 +19,29 @@
   padding: $spacing-md;
   font-size: $font-size-base;
   line-height: 1.5;
-  color: $text-color;
-  background-color: $white;
+  color: $white; // Изменено с $text-color на $white
+  background-color: rgba($dark-color, 0.8); // Изменено с $white на темный полупрозрачный
   background-clip: padding-box;
-  border: 1px solid #ced4da;
+  border: 1px solid #444; // Изменено для темного фона
   border-radius: $border-radius-md;
   @include transition;
   
   &:focus {
-    color: $text-color;
-    background-color: $white;
-    border-color: color.adjust($primary-color, $lightness: 25%);
+    color: $white; // Изменено с $text-color на $white
+    background-color: rgba($dark-color, 0.9); // Изменено для темного фона
+    border-color: $primary-color; // Изменено для соответствия теме
     outline: 0;
     box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
   }
   
   &::placeholder {
-    color: $text-light;
+    color: rgba($white, 0.5); // Изменено для темного фона
     opacity: 1;
   }
   
   &:disabled,
   &[readonly] {
-    background-color: #e9ecef;
+    background-color: #333; // Изменено для темного фона
     opacity: 1;
   }
 }
