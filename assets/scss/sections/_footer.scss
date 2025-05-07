@@ -208,7 +208,7 @@
     
     // Добавляем градиентный эффект для текста "Разработано:"
     &:before {
-      content: 'Разработано:';
+      content: 'Сайт разработал:';
       background: linear-gradient(to right, $primary-color, $accent-color);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;

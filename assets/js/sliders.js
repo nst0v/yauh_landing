@@ -5,9 +5,15 @@ document.addEventListener('DOMContentLoaded', function() {
         slidesPerView: 1, // На мобильных устройствах показываем 1 слайд
         spaceBetween: 30,
         loop: true,
+        loopAdditionalSlides: 3,
+        speed: 400,
+        allowTouchMove: true,
+        shortSwipes: true,
+        longSwipes: true,
+        followFinger: true,
         autoplay: {
             delay: 4000, // Автопрокрутка каждые 4 секунды
-            disableOnInteraction: false,
+            disableOnInteraction: false, // Continue autoplay after user interaction
         },
         pagination: {
             el: '.swiper-pagination',
@@ -32,34 +38,22 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Функция для мигания кнопок навигации с плавным затуханием
-    function pulseNavigationButtons() {
+    // Добавляем подсказки для кнопок навигации
+    function addButtonLabels() {
         const nextButton = document.querySelector('.swiper-button-next');
         const prevButton = document.querySelector('.swiper-button-prev');
         
         if (nextButton && prevButton) {
-            // Добавляем класс для подсветки
-            nextButton.classList.add('highlight-button');
-            prevButton.classList.add('highlight-button');
+            // Добавляем атрибуты для улучшения доступности
+            nextButton.setAttribute('aria-label', 'Следующий слайд');
+            prevButton.setAttribute('aria-label', 'Предыдущий слайд');
             
-            // Вместо резкого удаления класса, добавляем класс для плавного затухания
-            setTimeout(function() {
-                nextButton.classList.add('highlight-button-fading');
-                prevButton.classList.add('highlight-button-fading');
-                
-                // Удаляем оба класса через 3 секунды (время затухания)
-                setTimeout(function() {
-                    nextButton.classList.remove('highlight-button');
-                    prevButton.classList.remove('highlight-button');
-                    nextButton.classList.remove('highlight-button-fading');
-                    prevButton.classList.remove('highlight-button-fading');
-                    
-                    // Больше не повторяем мигание
-                }, 3000); // 3 секунды на затухание
-            }, 5000); // 5 секунд активной подсветки
+            // Добавляем подсказки при наведении
+            nextButton.setAttribute('title', 'Следующий слайд');
+            prevButton.setAttribute('title', 'Предыдущий слайд');
         }
     }
-
-    // Запускаем мигание кнопок через 3 секунды после загрузки
-    setTimeout(pulseNavigationButtons, 3000);
+    
+    // Вызываем функцию добавления подсказок
+    addButtonLabels();
 });

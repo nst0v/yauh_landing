@@ -7,6 +7,8 @@
   background-image: linear-gradient(45deg, rgba($primary-color, 0.05) 25%, transparent 25%, transparent 50%, rgba($primary-color, 0.05) 50%, rgba($primary-color, 0.05) 75%, transparent 75%, transparent);
   background-size: 20px 20px;
   border-bottom: 1px solid $section-border-color;
+  position: relative;
+  overflow: hidden; // Скрываем переполнение на уровне секции
   
   @include media-breakpoint-down(md) {
     padding: $spacing-xl 0;
@@ -32,7 +34,59 @@
     }
   }
   
+  // Создаем контейнер для слайдера с переполнением
+  .swiper-container {
+    position: relative;
+    width: 100vw; // Используем viewport width для расширения на всю ширину экрана
+    left: 50%; // Сдвигаем влево на 50%
+    right: 50%; // Сдвигаем вправо на 50%
+    margin-left: -50vw; // Компенсируем сдвиг влево
+    margin-right: -50vw; // Компенсируем сдвиг вправо
+    overflow: hidden; // Скрываем горизонтальное переполнение
+    padding: 20px 0;
+    padding-bottom: 80px; // Увеличиваем отступ снизу, чтобы кнопки были полностью видны
+    
+    // Добавляем градиенты по краям для эффекта "затухания"
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 100px;
+      height: 100%;
+      z-index: 5;
+      pointer-events: none; // Чтобы можно было кликать сквозь градиенты
+    }
+    
+    &:before {
+      left: 0;
+      background: linear-gradient(to right, $background-color-dark, transparent);
+    }
+    
+    &:after {
+      right: 0;
+      background: linear-gradient(to left, $background-color-dark, transparent);
+    }
+  }
+  
   // Стили для Swiper
+  .swiper {
+    position: relative;
+    overflow: visible !important; // Разрешаем переполнение слайдера
+    padding: 20px 0;
+    max-width: 1200px; // Ограничиваем максимальную ширину слайдера
+    margin: 0 auto; // Центрируем слайдер
+    padding-left: 50px; // Добавляем отступ слева
+    padding-right: 50px; // Добавляем отступ справа
+  }
+  
+  .swiper-wrapper {
+    overflow: visible !important;
+  }
+  
+  .swiper-slide {
+    overflow: visible !important;
+  }
+  
   .swiper-button-next,
   .swiper-button-prev {
     color: $accent-color;
@@ -65,7 +119,6 @@
     
     @include media-breakpoint-down(md) {
       &:after {
-        content: 'Свайпните для просмотра';
         position: absolute;
         bottom: -30px;
         left: 50%;
@@ -92,12 +145,6 @@
   }
 }
 
-// Анимация появления/исчезновения подсказки
-@keyframes fade-in-out {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 0.8; }
-}
-
 .product-card {
   text-align: center;
   padding: $spacing-lg;
@@ -105,11 +152,14 @@
   background-color: $dark-color;
   box-shadow: $box-shadow-sm;
   @include transition;
-  border-right: 3px solid $accent-color;
+  border: 3px solid $accent-color;
+  position: relative; 
+  z-index: 1;
   
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba($accent-color, 0.2);
+    box-shadow: 0 35px 45px rgba($accent-color, 0.3);
+    transform: scale(1.05);
+    z-index: 10;
   }
   
   &__icon {
@@ -120,6 +170,18 @@
       height: 300px;
       margin: 0 auto;
       filter: drop-shadow(0 0 5px rgba($primary-color, 0.5));
+
+      // Адаптивные размеры для мобильных устройств
+      @include media-breakpoint-down(md) {
+        width: 200px;
+        height: 200px;
+      }
+      
+      // Еще меньшие размеры для очень маленьких экранов
+      @include media-breakpoint-down(sm) {
+        width: 180px;
+        height: 180px;
+      }
     }
   }
   

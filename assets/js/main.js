@@ -5,47 +5,107 @@ document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('.header');
     const body = document.body;
     
+    // Флаг для отслеживания состояния анимации
+    let isAnimating = false;
+    
     // Мобильное меню
     if (menuToggle && nav) {
-        menuToggle.addEventListener('click', function() {
-            if (this.classList.contains('active')) {
-                // Если меню открыто, сразу закрываем без задержки
-                this.classList.remove('active');
-                nav.classList.remove('active');
-                body.classList.remove('menu-open');
-                nav.style.animation = 'fadeOutMenu 0.3s ease-in-out forwards';
-            } else {
-                // Если меню закрыто, просто добавляем классы
-                this.classList.add('active');
-                nav.classList.add('active');
-                body.classList.add('menu-open');
-                nav.style.animation = 'fadeInMenu 0.3s ease-in-out forwards';
-            }
-        });
+        // Функция для открытия меню
+        function openMenu() {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            menuToggle.classList.add('active');
+            nav.classList.add('active');
+            body.classList.add('menu-open');
+            
+            // Добавляем анимацию появления
+            nav.style.animation = 'fadeInMenu 0.3s ease-in-out forwards';
+            
+            // По окончании анимации сбрасываем флаг
+            setTimeout(() => {
+                isAnimating = false;
+            }, 300);
+        }
         
-        // Обновляем обработчик для закрытия меню при клике на ссылку
-        const navLinks = document.querySelectorAll('.nav__link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                // Сразу закрываем меню без задержки
+        // Функция для закрытия меню
+        function closeMenu(callback) {
+            if (isAnimating) return;
+            isAnimating = true;
+            
+            // Добавляем анимацию исчезновения
+            nav.style.animation = 'fadeOutMenu 0.3s ease-in-out forwards';
+            
+            // По окончании анимации удаляем классы
+            setTimeout(() => {
                 menuToggle.classList.remove('active');
                 nav.classList.remove('active');
                 body.classList.remove('menu-open');
-                nav.style.animation = 'fadeOutMenu 0.3s ease-in-out forwards';
+                nav.style.animation = '';
+                isAnimating = false;
+                
+                // Если есть callback, вызываем его
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            }, 300);
+        }
+        
+        // Обработчик клика на бургер-меню
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Предотвращаем всплытие события
+            
+            if (this.classList.contains('active')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        
+        // Обработчик клика на ссылки в меню
+        const navLinks = document.querySelectorAll('.nav__link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Если это якорная ссылка, предотвращаем стандартное поведение
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    // Закрываем меню и после этого прокручиваем к целевому элементу
+                    closeMenu(() => {
+                        if (targetElement) {
+                            const headerHeight = header ? header.offsetHeight : 0;
+                            const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                            
+                            window.scrollTo({
+                                top: targetPosition - headerHeight - 20,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                } else {
+                    // Если это обычная ссылка, просто закрываем меню
+                    closeMenu();
+                }
             });
         });
         
-        // Обновляем обработчик для закрытия меню при клике вне меню
+        // Обработчик клика вне меню
         document.addEventListener('click', function(event) {
             if (nav.classList.contains('active') && 
                 !nav.contains(event.target) && 
                 !menuToggle.contains(event.target)) {
-                
-                // Сразу закрываем меню без задержки
-                menuToggle.classList.remove('active');
-                nav.classList.remove('active');
-                body.classList.remove('menu-open');
-                nav.style.animation = 'fadeOutMenu 0.3s ease-in-out forwards';
+                closeMenu();
+            }
+        });
+        
+        // Предотвращаем закрытие меню при клике внутри меню
+        nav.addEventListener('click', function(e) {
+            // Проверяем, что клик был не по ссылке
+            if (!e.target.closest('.nav__link')) {
+                e.stopPropagation();
             }
         });
     }

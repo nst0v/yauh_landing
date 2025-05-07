@@ -3,56 +3,28 @@
 
 // Стили для слайдера продуктов
 .productsSwiper {
-  padding-bottom: 50px; // Место для пагинации
-  position: relative; // Важно для правильного позиционирования кнопок
+  padding-bottom: 70px;
+  position: relative;
   
   .swiper-slide {
-    height: auto; // Чтобы слайды были одинаковой высоты
+    height: auto;
   }
   
   .product-card {
-    height: 100%; // Чтобы карточка занимала весь слайд
+    height: 100%;
   }
   
-  // Улучшенные стили для кнопок навигации
-  .swiper-button-next,
-  .swiper-button-prev {
-    color: $white; // Белый цвет для лучшей видимости
-    background-color: $primary-color; // Бордовый фон
-    width: 50px; // Увеличиваем размер
-    height: 50px; // Увеличиваем размер
-    border-radius: 50%; // Круглые кнопки
-    opacity: 0.9; // Немного прозрачности
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); // Добавляем тень
-    
-    // Центрируем стрелку внутри кнопки
-    &:after {
-      font-size: 22px; // Увеличиваем размер стрелки
-      font-weight: bold; // Делаем стрелку жирнее
-    }
-    
-    // Эффект при наведении
-    &:hover {
-      background-color: $secondary-color; // Меняем цвет при наведении
-      color: $white;
-      opacity: 1;
-      transform: scale(1.1); // Немного увеличиваем при наведении
-    }
+  .swiper-pagination {
+    bottom: auto;
+    top: calc(100% - 60px);
+    width: 100%;
+    left: 0;
+    z-index: 10;
   }
   
-  // Позиционирование кнопок
-  .swiper-button-next {
-    right: 15px; // Немного дальше от края
-  }
-  
-  .swiper-button-prev {
-    left: 15px; // Немного дальше от края
-  }
-  
-  // Стили для пагинации
   .swiper-pagination-bullet {
-    width: 12px; // Увеличиваем размер точек
-    height: 12px; // Увеличиваем размер точек
+    width: 12px;
+    height: 12px;
     background-color: $text-light;
     opacity: 0.5;
     
@@ -62,20 +34,67 @@
     }
   }
   
-  // Медиа-запрос для больших экранов
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: $white;
+    background-color: $primary-color;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    opacity: 0.9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    top: auto;
+    bottom: -45px;
+    z-index: 10;
+    
+    &:after {
+      content: '';
+      display: block;
+      width: 15px;
+      height: 15px;
+      border-top: 3px solid $white;
+      border-right: 3px solid $white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
+    
+    &:hover {
+      background-color: $secondary-color;
+      color: $white;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+  
+  .swiper-button-next:after {
+    transform: translate(-60%, -50%) rotate(45deg);
+  }
+  
+  .swiper-button-prev:after {
+    transform: translate(-40%, -50%) rotate(-135deg);
+  }
+
+  .swiper-button-next {
+    right: calc(50% - 30px);
+  }
+  
+  .swiper-button-prev {
+    left: calc(50% - 30px);
+  }
+  
   @include media-breakpoint-up(lg) {
-    // Увеличиваем отступы для кнопок на больших экранах
+
     .swiper-button-next {
-      right: -25px;
+      right: calc(50% - 60px);
     }
     
     .swiper-button-prev {
-      left: -25px;
+      left: calc(50% - 60px);
     }
   }
 }
 
-// Добавляем анимацию для привлечения внимания к кнопкам при загрузке страницы
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -91,13 +110,11 @@
   }
 }
 
-// Применяем анимацию к кнопкам при загрузке страницы
 .swiper-button-next,
 .swiper-button-prev {
-  animation: pulse 2s ease-in-out 1s; // Запускаем анимацию через 1 секунду после загрузки
+  animation: pulse 2s ease-in-out 1s;
 }
 
-// Стиль для подсветки кнопок
 .highlight-button {
   animation: highlight 1s ease-in-out;
   z-index: 100;

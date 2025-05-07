@@ -1,14 +1,248 @@
 @use '../variables' as *;
 @use '../mixins' as *;
 
+// Добавляем анимацию для фона features
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+// Анимация для плавающих частиц - уменьшаем амплитуду для более быстрого эффекта
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-12px) rotate(4deg);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.8;
+  }
+}
+
+// Анимация для альтернативных частиц - уменьшаем амплитуду
+@keyframes float-alt {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(12px) rotate(-4deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.6;
+  }
+}
+
+// Добавляем третью анимацию для разнообразия - уменьшаем амплитуду
+@keyframes float-diagonal {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(8px, -8px) rotate(3deg);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.5;
+  }
+}
+
 .features {
   padding: $spacing-xxl 0;
   background-color: $background-color-alt;
   position: relative;
+  overflow: hidden; // Скрываем выходящие за границы элементы
   border-bottom: 1px solid $section-border-color;
   
-  // Добавим декоративный элемент сбоку
+  // Основной фон с градиентом
   &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      135deg,
+      rgba(darken($primary-color, 30%), 0.2) 0%,
+      rgba(darken($background-color-alt, 5%), 0.9) 40%,
+      rgba(darken($background-color-alt, 5%), 0.9) 60%,
+      rgba(darken($accent-color, 30%), 0.2) 100%
+    );
+    background-size: 300% 300%;
+    animation: gradientFlow 15s ease infinite; // Ускоряем с 20s до 15s
+    z-index: 1;
+  }
+  
+  // Добавляем плавающие частицы
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba($primary-color, 0.1) 0%,
+      rgba($accent-color, 0.1) 100%
+    );
+    z-index: 2;
+    pointer-events: none; // Чтобы частицы не мешали взаимодействию
+    
+    // Первая группа частиц (слева) - ускоряем анимации
+    &:nth-child(1) {
+      width: 150px;
+      height: 150px;
+      top: 10%;
+      left: 5%;
+      animation: float 8s ease-in-out infinite; // Было 12s, стало 8s
+    }
+    
+    &:nth-child(2) {
+      width: 200px;
+      height: 200px;
+      bottom: 15%;
+      right: 10%;
+      animation: float-alt 10s ease-in-out infinite; // Было 15s, стало 10s
+      animation-delay: 1.5s; // Было 2s, стало 1.5s
+    }
+    
+    &:nth-child(3) {
+      width: 120px;
+      height: 120px;
+      top: 40%;
+      right: 20%;
+      animation: float 7s ease-in-out infinite; // Было 10s, стало 7s
+      animation-delay: 0.7s; // Было 1s, стало 0.7s
+    }
+    
+    &:nth-child(4) {
+      width: 180px;
+      height: 180px;
+      bottom: 30%;
+      left: 15%;
+      animation: float-alt 9s ease-in-out infinite; // Было 14s, стало 9s
+      animation-delay: 2s; // Было 3s, стало 2s
+    }
+    
+    &:nth-child(5) {
+      width: 100px;
+      height: 100px;
+      top: 20%;
+      left: 40%;
+      animation: float 7.5s ease-in-out infinite; // Было 11s, стало 7.5s
+      animation-delay: 1.8s; // Было 2.5s, стало 1.8s
+    }
+    
+    // Добавляем больше частиц (справа) - ускоряем анимации
+    &:nth-child(6) {
+      width: 130px;
+      height: 130px;
+      top: 15%;
+      right: 5%;
+      animation: float-diagonal 8.5s ease-in-out infinite; // Было 13s, стало 8.5s
+      animation-delay: 1s; // Было 1.5s, стало 1s
+    }
+    
+    &:nth-child(7) {
+      width: 90px;
+      height: 90px;
+      top: 60%;
+      right: 15%;
+      animation: float-alt 6s ease-in-out infinite; // Было 9s, стало 6s
+      animation-delay: 0.3s; // Было 0.5s, стало 0.3s
+    }
+    
+    &:nth-child(8) {
+      width: 160px;
+      height: 160px;
+      bottom: 5%;
+      right: 30%;
+      animation: float 10s ease-in-out infinite; // Было 16s, стало 10s
+      animation-delay: 2.5s; // Было 3.5s, стало 2.5s
+    }
+    
+    // Добавляем частицы сверху - ускоряем анимации
+    &:nth-child(9) {
+      width: 140px;
+      height: 140px;
+      top: 5%;
+      left: 25%;
+      animation: float-diagonal 9s ease-in-out infinite; // Было 14s, стало 9s
+      animation-delay: 1.5s; // Было 2.2s, стало 1.5s
+    }
+    
+    &:nth-child(10) {
+      width: 110px;
+      height: 110px;
+      top: 8%;
+      right: 35%;
+      animation: float 7s ease-in-out infinite; // Было 11s, стало 7s
+      animation-delay: 1.2s; // Было 1.8s, стало 1.2s
+    }
+    
+    // Добавляем частицы в центре - ускоряем анимации
+    &:nth-child(11) {
+      width: 85px;
+      height: 85px;
+      top: 45%;
+      left: 55%;
+      animation: float-alt 5.5s ease-in-out infinite; // Было 8.5s, стало 5.5s
+      animation-delay: 0.5s; // Было 0.8s, стало 0.5s
+    }
+    
+    &:nth-child(12) {
+      width: 170px;
+      height: 170px;
+      bottom: 20%;
+      left: 30%;
+      animation: float-diagonal 11s ease-in-out infinite; // Было 17s, стало 11s
+      animation-delay: 2.8s; // Было 4s, стало 2.8s
+    }
+    
+    // Добавляем маленькие частицы для заполнения пространства - ускоряем анимации
+    &:nth-child(13) {
+      width: 60px;
+      height: 60px;
+      top: 30%;
+      left: 10%;
+      animation: float 4s ease-in-out infinite; // Было 6s, стало 4s
+      animation-delay: 0.8s; // Было 1.2s, стало 0.8s
+    }
+    
+    &:nth-child(14) {
+      width: 70px;
+      height: 70px;
+      top: 70%;
+      right: 8%;
+      animation: float-alt 4.5s ease-in-out infinite; // Было 7s, стало 4.5s
+      animation-delay: 1.8s; // Было 2.7s, стало 1.8s
+    }
+    
+    &:nth-child(15) {
+      width: 50px;
+      height: 50px;
+      top: 25%;
+      right: 45%;
+      animation: float-diagonal 3.5s ease-in-out infinite; // Было 5s, стало 3.5s
+      animation-delay: 0.2s; // Было 0.3s, стало 0.2s
+    }
+  }
+  
+  // Добавляем декоративный элемент сбоку
+  &:after {
     content: '';
     position: absolute;
     top: 0;
@@ -16,6 +250,12 @@
     width: 5px;
     height: 100%;
     background: linear-gradient(to bottom, $primary-color, $secondary-color);
+    z-index: 3;
+  }
+  
+  .container {
+    position: relative;
+    z-index: 10; // Выше, чем все декоративные элементы
   }
   
   @include media-breakpoint-down(md) {
@@ -46,10 +286,35 @@
   box-shadow: $box-shadow-sm;
   @include transition;
   border-left: 3px solid $primary-color;
+  position: relative;
+  z-index: 10;
+  
+  // Добавляем эффект свечения при наведении
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: $border-radius-md;
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba($primary-color, 0.2) 0%,
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+  }
   
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba($primary-color, 0.2);
+    
+    &:before {
+      opacity: 1;
+    }
   }
   
   &__icon {

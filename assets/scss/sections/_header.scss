@@ -22,6 +22,10 @@
     box-shadow: $box-shadow-md;
   }
   
+  &.header-hidden {
+    transform: translateY(-100%);
+  }
+  
   // Добавляем мобильный заголовок
   &:before {
     content: 'SMM MARKET';
@@ -113,13 +117,17 @@
     
     &.active {
       display: block;
-      position: absolute;
-      top: 100%;
+      position: fixed;
+      top: 60px; // Высота шапки
       left: 0;
       width: 100%;
-      background-color: $dark-color;
+      height: calc(100vh - 60px);
+      background-color: rgba($dark-color, 0.95);
+      backdrop-filter: blur(5px);
       box-shadow: $box-shadow-sm;
-      padding: $spacing-md 0;
+      padding: $spacing-lg 0;
+      z-index: 999;
+      overflow-y: auto;
     }
   }
   
@@ -128,6 +136,7 @@
     
     @include media-breakpoint-down(md) {
       flex-direction: column;
+      padding: 0 $spacing-lg;
     }
   }
   
@@ -135,7 +144,13 @@
     margin: 0 $spacing-md;
     
     @include media-breakpoint-down(md) {
-      margin: $spacing-sm 0;
+      margin: $spacing-md 0;
+      border-bottom: 1px solid rgba($white, 0.1);
+      padding-bottom: $spacing-md;
+      
+      &:last-child {
+        border-bottom: none;
+      }
     }
   }
   
@@ -144,6 +159,31 @@
     font-weight: $font-weight-medium;
     padding: $spacing-sm;
     position: relative;
+    display: inline-block; // Важно для корректной работы эффектов
+    
+    @include media-breakpoint-down(md) {
+      display: block;
+      padding: $spacing-sm 0;
+      font-size: $font-size-lg;
+    }
+    
+    // Добавляем градиентный текст при наведении и для активного пункта
+    &:hover, &.active {
+      background: linear-gradient(to right, $primary-color, $accent-color);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      
+      &:after {
+        width: 100%;
+        background: linear-gradient(to right, $primary-color, $accent-color);
+      }
+    }
+    
+    // Добавляем эффект нажатия
+    &:active {
+      transform: scale(0.98);
+    }
     
     &:after {
       content: '';
@@ -156,14 +196,6 @@
       background-color: $primary-color;
       @include transition;
     }
-    
-    &:hover, &.active {
-      color: $primary-color;
-      
-      &:after {
-        width: 100%;
-      }
-    }
   }
 }
 
@@ -175,6 +207,8 @@
   cursor: pointer;
   padding: $spacing-sm;
   position: relative;
+  width: 40px;
+  height: 40px;
   
   @include media-breakpoint-down(md) {
     display: block;
@@ -190,7 +224,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
     
     &:before, &:after {
       content: '';
@@ -199,8 +233,8 @@
       height: 100%;
       background: linear-gradient(to right, $primary-color, $accent-color);
       left: 0;
-      transition: all 0.4s ease;
-      transform-origin: center; // Важно! Устанавливаем точку вращения по центру
+      transition: all 0.3s ease;
+      transform-origin: center;
     }
     
     &:before {
@@ -233,52 +267,7 @@ body.menu-open {
   overflow: hidden; // Предотвращаем прокрутку страницы
 }
 
-// Улучшаем стили для мобильного меню
-@include media-breakpoint-down(md) {
-  .nav {
-    &.active {
-      display: block;
-      position: fixed;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      height: calc(100vh - 60px);
-      // Добавляем прозрачность к фону
-      background-color: rgba($dark-color, 0.95);
-      backdrop-filter: blur(5px); // Добавляем эффект размытия для современных браузеров
-      box-shadow: $box-shadow-sm;
-      padding: $spacing-lg 0;
-      z-index: 999;
-      overflow-y: auto;
-      // Добавляем плавное появление меню
-      opacity: 0;
-      transform: translateY(-10px);
-      animation: fadeInMenu 0.4s ease-in-out forwards;
-      
-      .nav__list {
-        padding: 0 $spacing-lg;
-      }
-      
-      .nav__item {
-        margin: $spacing-md 0;
-        border-bottom: 1px solid rgba($white, 0.1);
-        padding-bottom: $spacing-md;
-        
-        &:last-child {
-          border-bottom: none;
-        }
-      }
-      
-      .nav__link {
-        display: block;
-        padding: $spacing-sm 0;
-        font-size: $font-size-lg;
-      }
-    }
-  }
-}
-
-// Добавляем анимацию для плавного появления меню
+// Анимации для мобильного меню
 @keyframes fadeInMenu {
   from {
     opacity: 0;
