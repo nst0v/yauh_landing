@@ -18,8 +18,10 @@ $section-border-color: rgba($primary-color, 0.3); // Полупрозрачны�
 
 
 // Шрифты
-$font-primary: 'Roboto', sans-serif;
-$font-secondary: 'Montserrat', sans-serif;
+$font-primary: 'Poppins', sans-serif; // Современный, чистый шрифт для основного текста
+$font-secondary: 'Montserrat', sans-serif; // Сохраняем для заголовков
+$font-accent: 'Playfair Display', serif; // Элегантный шрифт для акцентов
+
 
 // Размеры шрифтов
 $font-size-base: 16px;

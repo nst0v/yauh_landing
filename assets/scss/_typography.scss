@@ -5,6 +5,10 @@
 body {
   background-color: $background-color;
   color: $text-color;
+  font-family: $font-primary;
+  font-weight: $font-weight-normal;
+  -webkit-font-smoothing: antialiased; // Улучшает отображение шрифтов
+  -moz-osx-font-smoothing: grayscale;
 }
 
 // Заголовки
@@ -14,11 +18,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: $line-height-sm;
   margin-bottom: $spacing-md;
   color: $white;
+  letter-spacing: -0.02em; // Небольшой отрицательный трекинг для современного вида
 }
 
 h1 {
   font-size: $font-size-hero;
-  
+  text-transform: uppercase; // Заглавные буквы для главного заголовка
+  letter-spacing: 0.05em; // Увеличенный трекинг для заглавных букв
   @include media-breakpoint-down(md) {
     font-size: $font-size-xxl;
   }
@@ -94,6 +100,13 @@ a {
   color: $text-light;
 }
 
+// Акцентный текст с использованием Playfair Display
+.text-accent {
+  font-family: $font-accent;
+  font-style: italic;
+  font-weight: $font-weight-normal;
+}
+
 // Заголовки секций
 .section-title {
   text-align: center;
@@ -101,6 +114,8 @@ a {
   position: relative;
   color: $white;
   padding-bottom: $spacing-md;
+  text-transform: uppercase; // Заглавные буквы для заголовков секций
+  letter-spacing: 0.05em; // Увеличенный трекинг
   
   &:after {
     content: '';
@@ -124,3 +139,4 @@ a {
     background: linear-gradient(to right, transparent, $primary-color, transparent);
   }
 }
+
