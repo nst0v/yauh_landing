@@ -1,0 +1,113 @@
+@use 'variables' as *;
+// Миксин для flexbox
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Миксин для абсолютного позиционирования
+@mixin absolute($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
+
+// Миксин для центрирования элемента
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Миксин для медиа-запросов
+@mixin media-breakpoint-up($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+// Миксин для медиа-запросов (вниз)
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: ($breakpoint-sm - 1)) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: ($breakpoint-md - 1)) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: ($breakpoint-lg - 1)) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: ($breakpoint-xl - 1)) { @content; }
+  } @else if $breakpoint == xxl {
+    @media (max-width: ($breakpoint-xxl - 1)) { @content; }
+  }
+}
+
+// Миксин для создания градиента
+@mixin gradient($start-color, $end-color, $direction: to bottom) {
+  background: linear-gradient($direction, $start-color, $end-color);
+}
+
+// Миксин для теней
+@mixin box-shadow($shadow...) {
+  box-shadow: $shadow;
+}
+
+// Миксин для скругления углов
+@mixin border-radius($radius) {
+  border-radius: $radius;
+}
+
+// Миксин для кнопок
+@mixin button-style($bg-color, $text-color, $hover-bg-color, $hover-text-color) {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  @include border-radius(4px);
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all $transition-normal;
+  
+  &:hover {
+    background-color: $hover-bg-color;
+    color: $hover-text-color;
+  }
+}
+
+// Миксин для карточек
+@mixin card-style($bg-color: $color-gray-dark, $padding: 20px, $radius: 8px) {
+  background-color: $bg-color;
+  padding: $padding;
+  @include border-radius($radius);
+  @include box-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
+}
+
+// Миксин для обрезки текста с многоточием
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Миксин для многострочного обрезания текста
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

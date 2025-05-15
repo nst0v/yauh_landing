@@ -1,0 +1,22 @@
+// Импорт переменных и миксинов
+@use 'variables' as *;
+@use 'mixins' as *;
+
+// Базовые стили
+@use 'reset';
+@use 'typography';
+
+// Компоненты
+@use 'buttons';
+@use 'forms';
+@use 'dividers';
+@use 'sliders';
+
+// Секции
+@use 'sections/header';
+@use 'sections/hero';
+@use 'sections/features';
+@use 'sections/cases';
+@use 'sections/products';
+@use 'sections/contact';
+@use 'sections/footer';

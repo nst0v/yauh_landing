@@ -1,0 +1,134 @@
+// Импортируем переменные и миксины
+@use '../variables' as *;
+@use '../mixins' as *;
+// Стили для футера
+.footer {
+  background-color: $color-gray-dark;
+  padding: 60px 0 30px;
+  
+  &__top {
+    @include flex(row, space-between, flex-start);
+    padding-bottom: 40px;
+    border-bottom: 1px solid $color-gray-light;
+    margin-bottom: 30px;
+    
+    @include media-breakpoint-down(md) {
+      @include flex(column, flex-start, center);
+      text-align: center;
+    }
+  }
+  
+  &__logo {
+    @include flex(row, flex-start, center);
+    margin-bottom: 20px;
+    
+    img {
+      height: 40px;
+      margin-right: 10px;
+    }
+    
+    @include media-breakpoint-down(md) {
+      justify-content: center;
+    }
+  }
+  
+  &__name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+  
+  &__nav {
+    margin: 0 20px;
+    
+    @include media-breakpoint-down(md) {
+      margin: 20px 0;
+    }
+  }
+  
+  .footer-nav {
+    &__list {
+      @include flex(row, center, center, wrap);
+      
+      @include media-breakpoint-down(md) {
+        justify-content: center;
+      }
+    }
+    
+    &__item {
+      margin: 0 15px 10px;
+    }
+    
+    &__link {
+      color: $color-white-dim;
+      transition: color $transition-fast;
+      
+      &:hover {
+        color: $color-accent;
+        text-decoration: none;
+      }
+    }
+  }
+  
+  &__social {
+    @include flex(row, flex-end, center);
+    
+    @include media-breakpoint-down(md) {
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      @include flex(row, center, center);
+      background-color: $color-gray;
+      @include border-radius(50%);
+      margin-left: 10px;
+      transition: background-color $transition-fast;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+      
+      &:hover {
+        background-color: $color-accent;
+      }
+      
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+  
+    &__bottom {
+    @include flex(row, space-between, center);
+    
+    @include media-breakpoint-down(md) {
+      @include flex(column, center, center);
+      text-align: center;
+    }
+  }
+  
+  &__copyright {
+    color: $color-white-dim;
+    font-size: $font-size-sm;
+    
+    @include media-breakpoint-down(md) {
+      margin-bottom: 10px;
+    }
+  }
+  
+  &__policy {
+    color: $color-white-dim;
+    font-size: $font-size-sm;
+    transition: color $transition-fast;
+    
+    &:hover {
+      color: $color-accent;
+      text-decoration: none;
+    }
+  }
+}
+

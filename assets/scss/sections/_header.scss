@@ -1,0 +1,64 @@
+// Импортируем переменные и миксины
+@use '../variables' as *;
+@use '../mixins' as *;
+// Стили для хедера
+.header {
+  height: 80px;
+  background-color: $color-dark;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: $z-index-fixed;
+  
+  .container {
+    @include flex(row, space-between, center);
+    height: 100%;
+  }
+  
+  &__logo {
+    @include flex(row, flex-start, center);
+    
+    img {
+      height: 40px;
+      margin-right: 10px;
+    }
+  }
+  
+  &__name {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-bold;
+    color: $color-white;
+  }
+  
+  &__nav {
+    .nav__list {
+      @include flex(row, flex-end, center);
+    }
+    
+    .nav__item {
+      margin-left: 30px;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+    
+    .nav__link {
+      color: $color-white-dim;
+      font-weight: $font-weight-medium;
+      transition: color $transition-fast;
+      
+      &:hover {
+        color: $color-accent;
+        text-decoration: none;
+      }
+    }
+  }
+  
+  @include media-breakpoint-down(md) {
+    .nav__list {
+      display: none; // Для мобильного меню
+    }
+  }
+}

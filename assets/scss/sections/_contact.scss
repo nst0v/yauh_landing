@@ -1,0 +1,59 @@
+// Импортируем переменные и миксины
+@use '../variables' as *;
+@use '../mixins' as *;
+// Стили для секции контактов
+.questions {
+  background-color: $color-dark;
+  padding: 80px 0;
+  
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    
+    @include media-breakpoint-down(md) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &__info {
+    p {
+      margin-bottom: 30px;
+    }
+  }
+  
+  &__contacts {
+    margin-top: 30px;
+  }
+}
+
+// Контактный элемент
+.contact-item {
+  @include flex(row, flex-start, center);
+  margin-bottom: 20px;
+  
+  &__icon {
+    width: 40px;
+    height: 40px;
+    @include flex(row, center, center);
+    background-color: $color-gray;
+    @include border-radius(50%);
+    margin-right: 15px;
+    
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  &__link {
+    color: $color-white;
+    font-weight: $font-weight-medium;
+    transition: color $transition-fast;
+    
+    &:hover {
+      color: $color-accent;
+      text-decoration: none;
+    }
+  }
+}

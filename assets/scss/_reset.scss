@@ -1,0 +1,44 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+// Сброс стилей
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: $color-black;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
+}
+
+// Контейнер
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+  
+  @include media-breakpoint-down(xl) {
+    max-width: 100%;
+  }
+}
+
+// Общие секции
+section {
+  padding: 80px 0;
+}

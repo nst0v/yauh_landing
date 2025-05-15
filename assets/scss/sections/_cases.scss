@@ -1,0 +1,61 @@
+// Импортируем переменные и миксины
+@use '../variables' as *;
+@use '../mixins' as *;
+// Стили для секции кейсов
+.cases {
+  background-color: $color-black;
+  padding: 80px 0;
+}
+
+// Карточка кейса
+.case-card {
+  @include card-style($color-gray-dark);
+  overflow: hidden;
+  
+  &__image {
+    margin: -20px -20px 20px;
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform $transition-normal;
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+  
+  &__content {
+    padding: 0 0 20px;
+  }
+  
+  &__title {
+    font-size: $font-size-md;
+    margin-bottom: 10px;
+  }
+  
+  &__description {
+    color: $color-white-dim;
+    margin-bottom: 20px;
+    @include line-clamp(3);
+  }
+  
+  &__button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: $color-accent;
+    color: $color-white;
+    @include border-radius(4px);
+    text-decoration: none;
+    transition: background-color $transition-fast;
+    
+    &:hover {
+      background-color: $color-accent-hover;
+      text-decoration: none;
+    }
+  }
+}

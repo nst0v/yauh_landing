@@ -1,0 +1,50 @@
+// Импортируем переменные и миксины
+@use 'variables' as *;
+@use 'mixins' as *;
+// Стили для кнопок
+.btn {
+  @include button-style($color-gray-dark, $color-white, $color-gray-light, $color-white);
+  font-size: $font-size-base;
+  text-align: center;
+  
+  &--primary {
+    @include button-style($color-accent, $color-white, $color-accent-hover, $color-white);
+  }
+  
+  &--secondary {
+    @include button-style($color-gray, $color-white, $color-gray-light, $color-white);
+  }
+  
+  &--outline {
+    background-color: transparent;
+    border: 2px solid $color-accent;
+    color: $color-accent;
+    
+    &:hover {
+      background-color: $color-accent;
+      color: $color-white;
+    }
+  }
+  
+  &--large {
+    padding: 14px 28px;
+    font-size: $font-size-md;
+  }
+  
+  &--small {
+    padding: 8px 16px;
+    font-size: $font-size-sm;
+  }
+  
+  &--block {
+    display: block;
+    width: 100%;
+  }
+}
+
+// Стили для кнопок в карточках
+.product-card__button,
+.case-card__button,
+.hero__button {
+  @include button-style($color-accent, $color-white, $color-accent-hover, $color-white);
+}

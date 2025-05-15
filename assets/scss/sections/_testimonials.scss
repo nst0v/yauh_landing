@@ -1,0 +1,76 @@
+// Импортируем переменные и миксины
+@use '../variables' as *;
+@use '../mixins' as *;
+// Стили для секции отзывов
+.testimonials {
+  background-color: $color-black;
+  padding: 80px 0;
+}
+
+// Карточка отзыва
+.testimonial-card {
+  @include card-style($color-gray-dark);
+  transition: transform $transition-normal;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+  
+  &__content {
+    position: relative;
+    padding-top: 20px;
+    
+    &:before {
+      content: '"';
+      position: absolute;
+      top: -10px;
+      left: -5px;
+      font-size: 60px;
+      font-family: serif;
+      color: rgba($color-accent, 0.2);
+      line-height: 1;
+    }
+  }
+  
+  &__text {
+    color: $color-white-dim;
+    font-style: italic;
+    margin-bottom: 20px;
+  }
+  
+  &__author {
+    @include flex(row, flex-start, center);
+    border-top: 1px solid $color-gray-light;
+    padding-top: 20px;
+  }
+  
+  &__photo {
+    width: 50px;
+    height: 50px;
+    @include border-radius(50%);
+    overflow: hidden;
+    margin-right: 15px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  &__info {
+    flex: 1;
+  }
+  
+  &__name {
+    font-size: $font-size-base;
+    margin-bottom: 5px;
+    color: $color-white;
+  }
+  
+  &__position {
+    font-size: $font-size-sm;
+    color: $color-white-dim;
+    margin: 0;
+  }
+}

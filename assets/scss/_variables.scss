@@ -1,0 +1,54 @@
+// Цветовая палитра
+$color-black: #0f0f0f;
+$color-dark: #1a1a1a;
+$color-gray-dark: #222222;
+$color-gray: #2d2d2d;
+$color-gray-light: #3d3d3d;
+$color-white: #f5f5f5;
+$color-white-dim: #c8c8c8;
+$color-accent: #e63946;
+$color-accent-hover: #ff4d5e;
+
+// Шрифты
+$font-primary: 'Montserrat', sans-serif;
+$font-secondary: 'Roboto', sans-serif;
+
+// Размеры шрифтов
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-md: 18px;
+$font-size-lg: 24px;
+$font-size-xl: 32px;
+$font-size-xxl: 48px;
+
+// Толщина шрифта
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+// Размеры контейнера
+$container-width: 1160px;
+$container-padding: 15px;
+
+// Брейкпоинты
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Анимации
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Z-индексы
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
