@@ -13,6 +13,8 @@ html {
 
 body {
   background-color: $color-black;
+  background-image: url('../img/noise-texture.png');
+  background-blend-mode: overlay;
   min-height: 100vh;
   overflow-x: hidden;
 }

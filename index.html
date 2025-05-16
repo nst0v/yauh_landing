@@ -5,140 +5,262 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YAUH Landing</title>
     <link rel="stylesheet" href="assets/css/main.css">
+    <!-- Подключение Swiper.js CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 </head>
 <body>
-    <!-- Header 1920x80 -->
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="header__logo">
-                <img src="assets/img/logo.svg" alt="Логотип">
+                <img src="https://raw.githubusercontent.com/nst0v/yauh_landing/main/assets/img/logo.svg" alt="Логотип">
                 <span class="header__name">YAUH</span>
             </div>
             <nav class="header__nav">
                 <ul class="nav__list">
+                    <li class="nav__item"><a href="#hero" class="nav__link">Главная</a></li>
                     <li class="nav__item"><a href="#company" class="nav__link">Компания</a></li>
                     <li class="nav__item"><a href="#products" class="nav__link">Продукты</a></li>
+                    <li class="nav__item"><a href="#cases" class="nav__link">Кейсы</a></li>
+                    <li class="nav__item"><a href="#testimonials" class="nav__link">Отзывы</a></li>
                     <li class="nav__item"><a href="#contacts" class="nav__link">Контакты</a></li>
                 </ul>
+                <!-- Добавляем гамбургер-меню для мобильных устройств -->
+                <div class="mobile-menu-toggle">
+                    <span></span>
+                </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section 1920x1200 -->
+    <!-- Мобильное меню -->
+    <div class="mobile-menu">
+        <div class="mobile-menu__container">
+            <div class="mobile-menu__header">
+                <div class="mobile-menu__logo">
+                    <img src="https://raw.githubusercontent.com/nst0v/yauh_landing/main/assets/img/logo.svg" alt="Логотип">
+                    <span class="mobile-menu__name">YAUH</span>
+                </div>
+                <button class="mobile-menu__close">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <nav class="mobile-menu__nav">
+                <ul class="mobile-menu__list">
+                    <li class="mobile-menu__item"><a href="#company" class="mobile-menu__link">Компания</a></li>
+                    <li class="mobile-menu__item"><a href="#products" class="mobile-menu__link">Продукты</a></li>
+                    <li class="mobile-menu__item"><a href="#cases" class="mobile-menu__link">Кейсы</a></li>
+                    <li class="mobile-menu__item"><a href="#testimonials" class="mobile-menu__link">Отзывы</a></li>
+                    <li class="mobile-menu__item"><a href="#contacts" class="mobile-menu__link">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu__footer">
+                <div class="mobile-menu__social">
+                    <a href="#" class="mobile-menu__social-link" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM17.61 9.5C17.61 9.59 17.61 9.69 17.61 9.78C17.61 13.34 14.86 17.4 9.89 17.4C8.36 17.4 6.93 16.96 5.7 16.19C5.93 16.22 6.16 16.23 6.39 16.23C7.66 16.23 8.82 15.81 9.77 15.08C8.58 15.06 7.56 14.26 7.21 13.15C7.39 13.18 7.57 13.2 7.76 13.2C8.03 13.2 8.29 13.16 8.54 13.09C7.3 12.84 6.36 11.75 6.36 10.44C6.36 10.43 6.36 10.41 6.36 10.4C6.73 10.6 7.15 10.73 7.59 10.74C6.86 10.26 6.39 9.44 6.39 8.51C6.39 8.01 6.52 7.55 6.74 7.15C8.09 8.82 10.13 9.91 12.42 10.01C12.38 9.82 12.35 9.62 12.35 9.41C12.35 7.9 13.58 6.67 15.09 6.67C15.88 6.67 16.59 7 17.1 7.53C17.73 7.41 18.33 7.18 18.87 6.87C18.67 7.51 18.25 8.05 17.69 8.39C18.24 8.33 18.77 8.19 19.26 7.97C18.87 8.52 18.39 9 17.83 9.39C17.84 9.43 17.84 9.46 17.84 9.5H17.61Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="mobile-menu__social-link" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.665 3.717L2.93497 10.554C1.72497 11.04 1.73197 11.715 2.71297 12.016L7.26497 13.436L17.797 6.791C18.295 6.488 18.75 6.651 18.376 6.983L9.84297 14.684H9.84097L9.84297 14.685L9.52897 19.377C9.98897 19.377 10.192 19.166 10.45 18.917L12.661 16.767L17.26 20.164C18.108 20.631 18.717 20.391 18.928 19.379L21.947 5.151C22.256 3.912 21.474 3.351 20.665 3.717Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                    <a href="#" class="mobile-menu__social-link" target="_blank">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.64 8.8C16.49 10.19 15.89 14.17 15.59 15.94C15.46 16.67 15.19 16.92 14.93 16.95C14.37 17.01 13.94 16.57 13.39 16.19C12.53 15.58 12.03 15.19 11.19 14.6C10.24 13.93 10.86 13.55 11.42 12.96C11.57 12.81 13.97 10.64 14.03 10.43C14.04 10.39 14.04 10.3 14 10.26C13.95 10.22 13.89 10.24 13.84 10.25C13.77 10.27 12.2 11.34 9.16 13.46C8.71 13.76 8.32 13.91 7.97 13.9C7.59 13.89 6.87 13.69 6.33 13.53C5.67 13.33 5.14 13.22 5.19 12.84C5.22 12.65 5.48 12.45 5.97 12.25C9.24 10.83 11.43 9.9 12.53 9.44C15.72 8.11 16.33 7.88 16.75 7.88C16.83 7.88 17.03 7.9 17.16 8.01C17.27 8.1 17.29 8.22 17.3 8.31C17.29 8.37 17.31 8.55 17.29 8.7L16.64 8.8Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="mobile-menu__slogan">
+                    Инновационные решения для вашего бизнеса
+                </div>
+            </div>
+        </div>
+        <div class="mobile-menu__overlay"></div>
+    </div>
+
+    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container">
             <div class="hero__card">
                 <div class="hero__photo">
-                    <img src="assets/img/profile-photo.jpg" alt="Фото">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&h=520&q=80" alt="Фото">
                 </div>
                 <div class="hero__content">
                     <h1 class="hero__name">Ваше Имя</h1>
-                    <p class="hero__description">Профессиональное описание и ключевые компетенции. Здесь можно рассказать о вашем опыте, навыках и достижениях. Текст должен быть убедительным и привлекательным для потенциальных клиентов.</p>
+                    <div class="hero__position">founder / ceo</div>
+                    <p class="hero__description">Профессиональное описание и ключевые компетенции. Профессиональное описание и ключевые компетенции.Профессиональное описание и ключевые компетенции.Профессиональное описание и ключевые компетенции.Профессиональное описание и ключевые компетенции.</p>
                     <a href="#contacts" class="hero__button">Связаться</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Company Section 1920x765 -->
+    <!-- Company Section -->
     <section class="company" id="company">
         <div class="container">
-            <h2 class="section-title">О компании</h2>
-            <div class="company__content">
-                <div class="company__info">
+            <div class="company__header">
+                <h2 class="company__title">О компании</h2>
+                <div class="company__description">
                     <p>Подробная информация о компании, ее миссии, ценностях и подходе к работе. Здесь можно рассказать историю создания компании, ее развитие и достижения.</p>
                     <p>Также можно описать команду, опыт работы и преимущества сотрудничества с вашей компанией.</p>
                 </div>
-                <div class="company__advantages">
-                    <div class="advantage">
-                        <div class="advantage__icon">
-                            <img src="assets/img/icons/advantage-1.svg" alt="Преимущество 1">
-                        </div>
-                        <h3 class="advantage__title">Преимущество 1</h3>
-                        <p class="advantage__text">Описание преимущества компании</p>
+            </div>
+            <div class="company__advantages">
+                <div class="advantage">
+                    <div class="advantage__icon">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Преимущество 1">
                     </div>
-                    <div class="advantage">
-                        <div class="advantage__icon">
-                            <img src="assets/img/icons/advantage-2.svg" alt="Преимущество 2">
-                        </div>
-                        <h3 class="advantage__title">Преимущество 2</h3>
-                        <p class="advantage__text">Описание преимущества компании</p>
+                    <h3 class="advantage__title">Преимущество 1</h3>
+                    <p class="advantage__text">Описание преимущества компании и его значимости для клиентов</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Преимущество 2">
                     </div>
-                    <div class="advantage">
-                        <div class="advantage__icon">
-                            <img src="assets/img/icons/advantage-3.svg" alt="Преимущество 3">
-                        </div>
-                        <h3 class="advantage__title">Преимущество 3</h3>
-                        <p class="advantage__text">Описание преимущества компании</p>
+                    <h3 class="advantage__title">Преимущество 2</h3>
+                    <p class="advantage__text">Описание преимущества компании и его значимости для клиентов</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Преимущество 3">
                     </div>
+                    <h3 class="advantage__title">Преимущество 3</h3>
+                    <p class="advantage__text">Описание преимущества компании и его значимости для клиентов</p>
+                </div>
+                <div class="advantage">
+                    <div class="advantage__icon">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&h=200&q=80" alt="Преимущество 4">
+                    </div>
+                    <h3 class="advantage__title">Преимущество 4</h3>
+                    <p class="advantage__text">Описание преимущества компании и его значимости для клиентов</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section 1920x1300 -->
+
+    <!-- Products Section -->
     <section class="products" id="products">
         <div class="container">
-            <h2 class="section-title">Наши продукты</h2>
+            <div class="products__header">
+                <h2 class="products__title">Наши продукты</h2>
+                <div class="products__description">
+                    <p>Мы разрабатываем инновационные решения для бизнеса, которые помогают нашим клиентам достигать поставленных целей и оптимизировать рабочие процессы.</p>
+                    <p>Каждый продукт создан с учетом потребностей современного рынка и обеспечивает максимальную эффективность при минимальных затратах.</p>
+                </div>
+            </div>
             <div class="products__grid">
                 <!-- Продукт 1 -->
                 <div class="product-card">
                     <div class="product-card__image">
-                        <img src="assets/img/products/product-1.jpg" alt="Продукт 1">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Продукт 1">
                     </div>
-                    <h3 class="product-card__title">Продукт 1</h3>
-                    <p class="product-card__description">Описание продукта, его особенности и преимущества</p>
-                    <a href="#" class="product-card__button">Подробнее</a>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Продукт 1</h3>
+                        <p class="product-card__description">Описание продукта, его особенности и преимущества для вашего бизнеса.</p>
+                        <div class="product-card__reviews">
+                            <div class="reviews-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="reviews-count">42 отзыва</span>
+                        </div>
+                        <a href="https://t.me/your_telegram_bot" target="_blank" class="product-card__button">Подробнее</a>
+                    </div>
                 </div>
                 
                 <!-- Продукт 2 -->
                 <div class="product-card">
                     <div class="product-card__image">
-                        <img src="assets/img/products/product-2.jpg" alt="Продукт 2">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Продукт 2">
                     </div>
-                    <h3 class="product-card__title">Продукт 2</h3>
-                    <p class="product-card__description">Описание продукта, его особенности и преимущества</p>
-                    <a href="#" class="product-card__button">Подробнее</a>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Продукт 2</h3>
+                        <p class="product-card__description">Описание продукта, его особенности и преимущества для вашего бизнеса.</p>
+                        <div class="product-card__reviews">
+                            <div class="reviews-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="reviews-count">38 отзывов</span>
+                        </div>
+                        <a href="https://t.me/your_telegram_bot" target="_blank" class="product-card__button">Подробнее</a>
+                    </div>
                 </div>
                 
                 <!-- Продукт 3 -->
                 <div class="product-card">
                     <div class="product-card__image">
-                        <img src="assets/img/products/product-3.jpg" alt="Продукт 3">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Продукт 3">
                     </div>
-                    <h3 class="product-card__title">Продукт 3</h3>
-                    <p class="product-card__description">Описание продукта, его особенности и преимущества</p>
-                    <a href="#" class="product-card__button">Подробнее</a>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Продукт 3</h3>
+                        <p class="product-card__description">Описание продукта, его особенности и преимущества для вашего бизнеса.</p>
+                        <div class="product-card__reviews">
+                            <div class="reviews-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="reviews-count">56 отзывов</span>
+                        </div>
+                        <a href="https://t.me/your_telegram_bot" target="_blank" class="product-card__button">Подробнее</a>
+                    </div>
                 </div>
                 
                 <!-- Продукт 4 -->
                 <div class="product-card">
                     <div class="product-card__image">
-                        <img src="assets/img/products/product-4.jpg" alt="Продукт 4">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Продукт 4">
                     </div>
-                    <h3 class="product-card__title">Продукт 4</h3>
-                    <p class="product-card__description">Описание продукта, его особенности и преимущества</p>
-                    <a href="#" class="product-card__button">Подробнее</a>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Продукт 4</h3>
+                        <p class="product-card__description">Описание продукта, его особенности и преимущества для вашего бизнеса.</p>
+                        <div class="product-card__reviews">
+                            <div class="reviews-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="reviews-count">29 отзывов</span>
+                        </div>
+                        <a href="https://t.me/your_telegram_bot" target="_blank" class="product-card__button">Подробнее</a>
+                    </div>
                 </div>
                 
                 <!-- Продукт 5 -->
                 <div class="product-card">
                     <div class="product-card__image">
-                        <img src="assets/img/products/product-5.jpg" alt="Продукт 5">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Продукт 5">
                     </div>
-                    <h3 class="product-card__title">Продукт 5</h3>
-                    <p class="product-card__description">Описание продукта, его особенности и преимущества</p>
-                    <a href="#" class="product-card__button">Подробнее</a>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Продукт 5</h3>
+                        <p class="product-card__description">Описание продукта, его особенности и преимущества для вашего бизнеса.</p>
+                        <div class="product-card__reviews">
+                            <div class="reviews-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <span class="reviews-count">47 отзывов</span>
+                        </div>
+                        <a href="https://t.me/your_telegram_bot" target="_blank" class="product-card__button">Подробнее</a>
+                    </div>
                 </div>
                 
                 <!-- Продукт 6 -->
                 <div class="product-card">
                     <div class="product-card__image">
-                        <img src="assets/img/products/product-6.jpg" alt="Продукт 6">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Продукт 6">
                     </div>
-                    <h3 class="product-card__title">Продукт 6</h3>
-                    <p class="product-card__description">Описание продукта, его особенности и преимущества</p>
-                    <a href="#" class="product-card__button">Подробнее</a>
+                    <div class="product-card__content">
+                        <h3 class="product-card__title">Продукт 6</h3>
+                        <p class="product-card__description">Описание продукта, его особенности и преимущества для вашего бизнеса.</p>
+                        <div class="product-card__reviews">
+                            <div class="reviews-stars">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <span class="reviews-count">34 отзыва</span>
+                        </div>
+                        <a href="https://t.me/your_telegram_bot" target="_blank" class="product-card__button">Подробнее</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,101 +270,310 @@
     <section class="cases" id="cases">
         <div class="container">
             <h2 class="section-title">Наши кейсы</h2>
-            <div class="cases__slider">
-                <!-- Кейс 1 -->
-                <div class="case-card">
-                    <div class="case-card__image">
-                        <img src="assets/img/cases/case-1.jpg" alt="Кейс 1">
-                    </div>
-                    <div class="case-card__content">
-                        <h3 class="case-card__title">Название проекта 1</h3>
-                        <p class="case-card__description">Описание проекта, задачи, решения и результаты</p>
-                        <a href="#" class="case-card__button">Подробнее</a>
+            
+            <div class="cases__slider-wrapper">
+                <!-- Кнопка "Предыдущий слайд" -->
+                <div class="cases-nav cases-nav--prev">
+                    <button class="cases-nav__button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Swiper с ограниченной шириной -->
+                <div class="cases__slider-container">
+                    <div class="swiper cases-swiper">
+                        <div class="swiper-wrapper">
+                            <!-- Кейс 1 -->
+                            <div class="swiper-slide">
+                                <div class="case-card">
+                                    <div class="case-card__image">
+                                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Кейс 1">
+                                    </div>
+                                    <div class="case-card__content">
+                                        <h3 class="case-card__title">Название проекта 1</h3>
+                                        <p class="case-card__description">Описание проекта, задачи, решения и результаты. Мы помогли клиенту увеличить продажи на 200% за 3 месяца.</p>
+                                        <a href="#" class="case-card__button">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Кейс 2 -->
+                            <div class="swiper-slide">
+                                <div class="case-card">
+                                    <div class="case-card__image">
+                                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Кейс 2">
+                                    </div>
+                                    <div class="case-card__content">
+                                        <h3 class="case-card__title">Название проекта 2</h3>
+                                        <p class="case-card__description">Описание проекта, задачи, решения и результаты. Комплексная автоматизация бизнес-процессов привела к сокращению издержек на 35%.</p>
+                                        <a href="#" class="case-card__button">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Кейс 3 -->
+                            <div class="swiper-slide">
+                                <div class="case-card">
+                                    <div class="case-card__image">
+                                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Кейс 3">
+                                    </div>
+                                    <div class="case-card__content">
+                                        <h3 class="case-card__title">Название проекта 3</h3>
+                                        <p class="case-card__description">Описание проекта, задачи, решения и результаты. Разработка индивидуального решения позволила клиенту выйти на новые рынки.</p>
+                                        <a href="#" class="case-card__button">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Кейс 4 -->
+                            <div class="swiper-slide">
+                                <div class="case-card">
+                                    <div class="case-card__image">
+                                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&h=500&q=80" alt="Кейс 4">
+                                    </div>
+                                    <div class="case-card__content">
+                                        <h3 class="case-card__title">Название проекта 4</h3>
+                                        <p class="case-card__description">Описание проекта, задачи, решения и результаты. Внедрение нашей системы позволило увеличить конверсию на 75%.</p>
+                                        <a href="#" class="case-card__button">Подробнее</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Пагинация (точки) -->
+                        <div class="swiper-pagination"></div>
                     </div>
                 </div>
                 
-                <!-- Кейс 2 -->
-                <div class="case-card">
-                    <div class="case-card__image">
-                        <img src="assets/img/cases/case-2.jpg" alt="Кейс 2">
+                <!-- Кнопка "Следующий слайд" -->
+                <div class="cases-nav cases-nav--next">
+                    <button class="cases-nav__button">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <!-- Стильный разделитель между секциями -->
+        <div class="section-divider">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#0f0f0f"></path>
+            </svg>
+        </div>
+
+        <div class="container">
+            <h2 class="section-title">Отзывы клиентов</h2>
+            
+            <!-- Первая лента отзывов (движется вправо) -->
+            <div class="testimonials__marquee testimonials__marquee--right">
+                <div class="testimonials__track">
+                    <!-- Отзыв 1 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Сотрудничество с YAUH превзошло все наши ожидания. Команда профессионалов помогла нам увеличить конверсию на 45% всего за два месяца!</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К1" alt="Клиент 1">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Анна Смирнова</h4>
+                                <p class="testimonial-card__position">Маркетинг-директор, TechCorp</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="case-card__content">
-                        <h3 class="case-card__title">Название проекта 2</h3>
-                        <p class="case-card__description">Описание проекта, задачи, решения и результаты</p>
-                        <a href="#" class="case-card__button">Подробнее</a>
+                    
+                    <!-- Отзыв 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Благодаря решениям YAUH мы смогли автоматизировать 80% рутинных процессов и сосредоточиться на стратегическом развитии бизнеса.</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К2" alt="Клиент 2">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Иван Петров</h4>
+                                <p class="testimonial-card__position">CEO, InnoSystems</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Отзыв 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Профессиональный подход и внимание к деталям - вот что отличает YAUH от других компаний. Рекомендую всем, кто ценит качество и результат.</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К3" alt="Клиент 3">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Елена Козлова</h4>
+                                <p class="testimonial-card__position">Руководитель отдела продаж, RetailPlus</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Отзыв 4 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Мы работаем с YAUH уже третий год, и каждый раз получаем именно то, что нужно нашему бизнесу. Оперативность и качество на высшем уровне!</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К4" alt="Клиент 4">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Дмитрий Соколов</h4>
+                                <p class="testimonial-card__position">Технический директор, WebSolutions</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Дублируем карточки для бесконечной прокрутки -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Сотрудничество с YAUH превзошло все наши ожидания. Команда профессионалов помогла нам увеличить конверсию на 45% всего за два месяца!</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К1" alt="Клиент 1">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Анна Смирнова</h4>
+                                <p class="testimonial-card__position">Маркетинг-директор, TechCorp</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Благодаря решениям YAUH мы смогли автоматизировать 80% рутинных процессов и сосредоточиться на стратегическом развитии бизнеса.</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К2" alt="Клиент 2">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Иван Петров</h4>
+                                <p class="testimonial-card__position">CEO, InnoSystems</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <!-- Кейс 3 -->
-                <div class="case-card">
-                    <div class="case-card__image">
-                        <img src="assets/img/cases/case-3.jpg" alt="Кейс 3">
+            </div>
+            
+            <!-- Вторая лента отзывов (движется влево) -->
+            <div class="testimonials__marquee testimonials__marquee--left">
+                <div class="testimonials__track">
+                    <!-- Отзыв 5 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Индивидуальный подход к нашему проекту позволил создать именно то решение, которое нам было необходимо. Результат превзошел ожидания!</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К5" alt="Клиент 5">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Ольга Николаева</h4>
+                                <p class="testimonial-card__position">Директор по развитию, GrowthLab</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="case-card__content">
-                        <h3 class="case-card__title">Название проекта 3</h3>
-                        <p class="case-card__description">Описание проекта, задачи, решения и результаты</p>
-                        <a href="#" class="case-card__button">Подробнее</a>
+                    
+                    <!-- Отзыв 6 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">YAUH помогли нам выйти на новый уровень в работе с клиентами. Внедренная CRM-система работает безупречно уже более года.</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К6" alt="Клиент 6">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Сергей Иванов</h4>
+                                <p class="testimonial-card__position">Руководитель IT-отдела, FinGroup</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Отзыв 7 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Сроки, качество, поддержка - всё на высшем уровне. Особенно ценим оперативность в решении возникающих вопросов.</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К7" alt="Клиент 7">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Марина Кузнецова</h4>
+                                <p class="testimonial-card__position">Операционный директор, LogiTech</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Отзыв 8 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Выражаем благодарность команде YAUH за профессионализм и креативный подход к решению наших задач. Будем рады продолжить сотрудничество!</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К8" alt="Клиент 8">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Алексей Морозов</h4>
+                                <p class="testimonial-card__position">Генеральный директор, BuildPro</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Дублируем карточки для бесконечной прокрутки -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">Индивидуальный подход к нашему проекту позволил создать именно то решение, которое нам было необходимо. Результат превзошел ожидания!</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К5" alt="Клиент 5">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Ольга Николаева</h4>
+                                <p class="testimonial-card__position">Директор по развитию, GrowthLab</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-card__content">
+                            <p class="testimonial-card__text">YAUH помогли нам выйти на новый уровень в работе с клиентами. Внедренная CRM-система работает безупречно уже более года.</p>
+                        </div>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__photo">
+                                <img src="https://via.placeholder.com/60x60/2d2d2d/e63946?text=К6" alt="Клиент 6">
+                            </div>
+                            <div class="testimonial-card__info">
+                                <h4 class="testimonial-card__name">Сергей Иванов</h4>
+                                <p class="testimonial-card__position">Руководитель IT-отдела, FinGroup</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials" id="testimonials">
-        <div class="container">
-            <h2 class="section-title">Отзывы клиентов</h2>
-            <div class="testimonials__slider">
-                <!-- Отзыв 1 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-card__content">
-                        <p class="testimonial-card__text">Текст отзыва клиента о сотрудничестве с компанией и результатах работы.</p>
-                    </div>
-                    <div class="testimonial-card__author">
-                        <div class="testimonial-card__photo">
-                            <img src="assets/img/testimonials/client-1.jpg" alt="Клиент 1">
-                        </div>
-                        <div class="testimonial-card__info">
-                            <h4 class="testimonial-card__name">Имя Клиента 1</h4>
-                            <p class="testimonial-card__position">Должность, Компания</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Отзыв 2 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-card__content">
-                        <p class="testimonial-card__text">Текст отзыва клиента о сотрудничестве с компанией и результатах работы.</p>
-                    </div>
-                    <div class="testimonial-card__author">
-                        <div class="testimonial-card__photo">
-                            <img src="assets/img/testimonials/client-2.jpg" alt="Клиент 2">
-                        </div>
-                        <div class="testimonial-card__info">
-                            <h4 class="testimonial-card__name">Имя Клиента 2</h4>
-                            <p class="testimonial-card__position">Должность, Компания</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Отзыв 3 -->
-                <div class="testimonial-card">
-                    <div class="testimonial-card__content">
-                        <p class="testimonial-card__text">Текст отзыва клиента о сотрудничестве с компанией и результатах работы.</p>
-                    </div>
-                    <div class="testimonial-card__author">
-                        <div class="testimonial-card__photo">
-                            <img src="assets/img/testimonials/client-3.jpg" alt="Клиент 3">
-                        </div>
-                        <div class="testimonial-card__info">
-                            <h4 class="testimonial-card__name">Имя Клиента 3</h4>
-                            <p class="testimonial-card__position">Должность, Компания</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Questions Section -->
     <section class="questions" id="contacts">
@@ -254,54 +585,40 @@
                     <div class="questions__contacts">
                         <div class="contact-item">
                             <div class="contact-item__icon">
-                                <img src="assets/img/icons/phone.svg" alt="Телефон">
+                                <img src="https://via.placeholder.com/24x24/e63946/ffffff?text=T" alt="Телефон">
                             </div>
                             <a href="tel:+71234567890" class="contact-item__link">+7 (123) 456-78-90</a>
                         </div>
                         <div class="contact-item">
                             <div class="contact-item__icon">
-                                <img src="assets/img/icons/email.svg" alt="Email">
+                                <img src="https://via.placeholder.com/24x24/e63946/ffffff?text=E" alt="Email">
                             </div>
                             <a href="mailto:info@yauh.ru" class="contact-item__link">info@yauh.ru</a>
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" action="includes/form-handler.php" method="POST">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Ваше имя</label>
-                        <input type="text" id="name" name="name" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" id="email" name="email" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Телефон</label>
-                        <input type="tel" id="phone" name="phone" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Сообщение</label>
-                        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn--primary">Отправить</button>
-                    
-                    <div class="form-message form-message--success" style="display: none;">
-                        Сообщение успешно отправлено!
-                    </div>
-                    <div class="form-message form-message--error" style="display: none;">
-                        Произошла ошибка при отправке сообщения.
-                    </div>
-                </form>
+                <div class="questions__telegram">
+                    <p class="questions__telegram-text">Для быстрой связи воспользуйтесь нашим Telegram ботом:</p>
+                    <a href="https://t.me/your_telegram_bot" target="_blank" class="telegram-button">
+                        <span class="telegram-button__icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.665 3.717L2.93497 10.554C1.72497 11.04 1.73197 11.715 2.71297 12.016L7.26497 13.436L17.797 6.791C18.295 6.488 18.75 6.651 18.376 6.983L9.84297 14.684H9.84097L9.84297 14.685L9.52897 19.377C9.98897 19.377 10.192 19.166 10.45 18.917L12.661 16.767L17.26 20.164C18.108 20.631 18.717 20.391 18.928 19.379L21.947 5.151C22.256 3.912 21.474 3.351 20.665 3.717Z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="telegram-button__text">Связаться в Telegram</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer__top">
                 <div class="footer__logo">
-                    <img src="assets/img/logo.svg" alt="Логотип">
+                    <img src="https://via.placeholder.com/35x35/ff4d5e/ffffff?text=Y" alt="Логотип">
                     <span class="footer__name">YAUH</span>
                 </div>
                 <nav class="footer__nav">
@@ -316,13 +633,13 @@
                 </nav>
                 <div class="footer__social">
                     <a href="#" class="social-link" target="_blank">
-                        <img src="assets/img/icons/vk.svg" alt="ВКонтакте">
+                        <img src="https://via.placeholder.com/30x30/e63946/ffffff?text=VK" alt="ВКонтакте">
                     </a>
                     <a href="#" class="social-link" target="_blank">
-                        <img src="assets/img/icons/telegram.svg" alt="Telegram">
+                        <img src="https://via.placeholder.com/30x30/e63946/ffffff?text=TG" alt="Telegram">
                     </a>
                     <a href="#" class="social-link" target="_blank">
-                        <img src="assets/img/icons/whatsapp.svg" alt="WhatsApp">
+                        <img src="https://via.placeholder.com/30x30/e63946/ffffff?text=WA" alt="WhatsApp">
                     </a>
                 </div>
             </div>
@@ -336,6 +653,10 @@
     <!-- Scripts -->
     <script src="assets/js/vendor/jquery.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/sliders.js"></script>
+    <!-- Подключение Swiper.js JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
 </body>
 </html>
 

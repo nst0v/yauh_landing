@@ -1,6 +1,7 @@
 // Импортируем переменные и миксины
 @use '../variables' as *;
 @use '../mixins' as *;
+
 // Стили для секции контактов
 .questions {
   background-color: $color-dark;
@@ -24,6 +25,25 @@
   
   &__contacts {
     margin-top: 30px;
+  }
+  
+  &__telegram {
+    @include flex(column, center, center);
+    background-color: rgba($color-gray, 0.5);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    border: 1px solid rgba($color-white, 0.1);
+    
+    @include media-breakpoint-down(md) {
+      padding: 30px;
+    }
+  }
+  
+  &__telegram-text {
+    margin-bottom: 25px;
+    font-size: $font-size-md;
+    color: $color-white;
   }
 }
 
@@ -55,5 +75,48 @@
       color: $color-accent;
       text-decoration: none;
     }
+  }
+}
+
+// Стили для кнопки Telegram
+.telegram-button {
+  @include flex(row, center, center);
+  background-color: #0088cc; // Фирменный цвет Telegram
+  color: $color-white;
+  padding: 16px 30px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-md;
+  transition: all $transition-normal;
+  box-shadow: 0 4px 15px rgba(#0088cc, 0.3);
+  width: 100%;
+  max-width: 300px;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(#0088cc, 0.5);
+    background-color: lighten(#0088cc, 5%);
+    color: $color-white;
+    text-decoration: none;
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(#0088cc, 0.4);
+  }
+  
+  &__icon {
+    margin-right: 12px;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
+  }
+  
+  &__text {
+    line-height: 1;
   }
 }

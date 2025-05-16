@@ -1,21 +1,135 @@
 // Импортируем переменные и миксины
 @use '../variables' as *;
 @use '../mixins' as *;
+
 // Стили для секции кейсов
 .cases {
   background-color: $color-black;
   padding: 80px 0;
+  
+  .section-title {
+    margin-bottom: 50px;
+    color: $color-white;
+  }
+  
+  &__slider-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1200px; // Ограничиваем максимальную ширину
+  }
+  
+  &__slider-container {
+    width: calc(100% - 120px); // Оставляем место для кнопок по бокам
+    max-width: 1000px; // Ограничиваем ширину слайдера
+    margin: 0 auto;
+    
+    @include media-breakpoint-down(md) {
+      width: calc(100% - 80px);
+    }
+  }
+  
+  // Стили для Swiper
+  .cases-swiper {
+    width: 100%;
+    padding-bottom: 60px; // Место для пагинации
+    
+    .swiper-slide {
+      height: auto; // Для равной высоты слайдов
+    }
+    
+    // Стили для пагинации (точек)
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background-color: $color-gray;
+      opacity: 0.7;
+      transition: all $transition-fast;
+      
+      &-active {
+        background-color: $color-accent;
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+  }
+  
+  // Стили для кнопок навигации
+  .cases-nav {
+    z-index: 10;
+    margin: 0 10px;
+    
+    &__button {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: rgba($color-gray-dark, 0.8);
+      border: 2px solid $color-accent;
+      color: $color-white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all $transition-fast;
+      
+      &:hover {
+        background-color: $color-accent;
+        transform: scale(1.1);
+      }
+      
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+    
+    @include media-breakpoint-down(md) {
+      &__button {
+        width: 40px;
+        height: 40px;
+        
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
 }
 
 // Карточка кейса
 .case-card {
   @include card-style($color-gray-dark);
   overflow: hidden;
+  border-radius: 12px;
+  height: 100%;
+  transition: transform $transition-normal, box-shadow $transition-normal;
+  
+  &:hover {
+    transform: translateY(-10px);
+    @include box-shadow(0 15px 30px rgba(0, 0, 0, 0.4));
+  }
   
   &__image {
     margin: -20px -20px 20px;
     height: 200px;
     overflow: hidden;
+    position: relative;
+    
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent 50%, rgba($color-gray-dark, 0.8) 100%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity $transition-normal;
+    }
     
     img {
       width: 100%;
@@ -24,8 +138,14 @@
       transition: transform $transition-normal;
     }
     
-    &:hover img {
-      transform: scale(1.05);
+    &:hover {
+      &:before {
+        opacity: 1;
+      }
+      
+      img {
+        transform: scale(1.05);
+      }
     }
   }
   
@@ -36,6 +156,24 @@
   &__title {
     font-size: $font-size-md;
     margin-bottom: 10px;
+    color: $color-white;
+    position: relative;
+    padding-bottom: 10px;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 2px;
+      background-color: $color-accent;
+      transition: width $transition-normal;
+    }
+    
+    &:hover:after {
+      width: 80px;
+    }
   }
   
   &__description {

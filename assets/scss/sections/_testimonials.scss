@@ -1,55 +1,192 @@
 // Импортируем переменные и миксины
 @use '../variables' as *;
 @use '../mixins' as *;
+
+// Стили для разделителя секций
+.section-divider {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin-top: -1px; // Убираем возможный зазор
+  
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    
+    path {
+      fill: $color-accent;
+      opacity: 0.1;
+      transition: opacity $transition-normal;
+    }
+  }
+  
+  &:hover {
+    svg path {
+      opacity: 0.2;
+    }
+  }
+}
+
 // Стили для секции отзывов
 .testimonials {
-  background-color: $color-black;
-  padding: 80px 0;
+  background-color: $color-black; // Такой же фон, как у секции кейсов
+  padding: 0 0 80px; // Убираем верхний отступ, т.к. у нас есть разделитель
+  overflow: hidden; // Скрываем выходящие за границы элементы
+  
+  .section-title {
+    margin-bottom: 50px;
+    color: $color-white;
+    text-align: center;
+  }
+  
+  // Контейнер для бегущей строки и декоративных элементов
+  &__marquee-container {
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  // Декоративные элементы по краям
+  &__edge {
+    position: relative;
+    width: 100px;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    // Левый край
+    &--left {
+      background: linear-gradient(to right, $color-black, transparent);
+      
+      .testimonials__edge-icon {
+        margin-right: auto;
+        margin-left: 15px;
+      }
+    }
+    
+    // Правый край
+    &--right {
+      background: linear-gradient(to left, $color-black, transparent);
+      
+      .testimonials__edge-icon {
+        margin-left: auto;
+        margin-right: 15px;
+      }
+    }
+    
+    &-inner {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+    
+    &-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba($color-gray-dark, 0.7);
+      border: 2px solid $color-accent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-white;
+      transition: all $transition-normal;
+      
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+      
+      // Анимация пульсации
+      animation: pulse 2s infinite;
+    }
+  }
+  
+  // Стили для бегущей строки (marquee)
+  &__marquee {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    
+    // Направление движения
+    &--right .testimonials__track {
+      animation: marquee-right 60s linear infinite;
+    }
+    
+    &--left .testimonials__track {
+      animation: marquee-left 60s linear infinite;
+    }
+    
+    // Приостанавливаем анимацию при наведении
+    &:hover .testimonials__track {
+      animation-play-state: paused;
+    }
+  }
+  
+  &__track {
+    display: flex;
+    width: fit-content; // Ширина по содержимому
+  }
 }
 
 // Карточка отзыва
 .testimonial-card {
   @include card-style($color-gray-dark);
-  transition: transform $transition-normal;
+  width: 350px;
+  margin-right: 20px;
+  border-radius: 12px;
+  border-left: 3px solid $color-accent;
+  transition: transform $transition-normal, box-shadow $transition-normal;
   
   &:hover {
     transform: translateY(-5px);
+    @include box-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
   }
   
   &__content {
-    position: relative;
-    padding-top: 20px;
-    
-    &:before {
-      content: '"';
-      position: absolute;
-      top: -10px;
-      left: -5px;
-      font-size: 60px;
-      font-family: serif;
-      color: rgba($color-accent, 0.2);
-      line-height: 1;
-    }
+    margin-bottom: 20px;
   }
   
   &__text {
     color: $color-white-dim;
     font-style: italic;
-    margin-bottom: 20px;
+    position: relative;
+    padding-left: 20px;
+    
+    &:before {
+      content: '"';
+      position: absolute;
+      left: 0;
+      top: -5px;
+      font-size: 30px;
+      color: $color-accent;
+      opacity: 0.5;
+    }
   }
   
   &__author {
     @include flex(row, flex-start, center);
-    border-top: 1px solid $color-gray-light;
-    padding-top: 20px;
   }
   
   &__photo {
     width: 50px;
     height: 50px;
-    @include border-radius(50%);
+    border-radius: 50%;
     overflow: hidden;
     margin-right: 15px;
+    border: 2px solid $color-accent;
     
     img {
       width: 100%;
@@ -72,5 +209,73 @@
     font-size: $font-size-sm;
     color: $color-white-dim;
     margin: 0;
+  }
+}
+
+// Анимации для бегущих строк
+@keyframes marquee-right {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); // Прокручиваем на половину ширины (до дублирующих элементов)
+  }
+}
+
+@keyframes marquee-left {
+  0% {
+    transform: translateX(-50%); // Начинаем с середины
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+// Анимация пульсации для иконок
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba($color-accent, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba($color-accent, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba($color-accent, 0);
+  }
+}
+
+// Адаптивность
+@include media-breakpoint-down(md) {
+  .testimonial-card {
+    width: 280px;
+  }
+  
+  .testimonials__edge {
+    width: 60px;
+    
+    &-icon {
+      width: 30px;
+      height: 30px;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .testimonial-card {
+    width: 250px;
+    
+    &__photo {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  .testimonials__edge {
+    width: 40px;
   }
 }
