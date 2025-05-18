@@ -7,6 +7,52 @@
   background-color: $color-dark;
   padding: 80px 0;
   
+    &__audio {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    audio {
+      width: 100%;
+      max-width: 700px;
+      height: 40px;
+      background-color: #3a3a3a;
+      border-radius: 8px;
+      
+      &::-webkit-media-controls-panel {
+        background-color: #3a3a3a;
+      }
+      
+      &::-webkit-media-controls-enclosure {
+        background-color: #3a3a3a;
+        border-radius: 8px;
+      }
+      
+      &::-webkit-media-controls-play-button,
+      &::-webkit-media-controls-volume-slider,
+      &::-webkit-media-controls-mute-button,
+      &::-webkit-media-controls-timeline {
+        color: $color-accent;
+      }
+      
+      &::-webkit-media-controls-current-time-display,
+      &::-webkit-media-controls-time-remaining-display {
+        color: $color-white-dim;
+      }
+    }
+    
+    @include media-breakpoint-down(md) {
+      margin-bottom: 30px;
+      
+      audio {
+        max-width: 100%;
+      }
+    }
+  }
+
+  
   &__header {
     display: grid;
     grid-template-columns: 1fr 2fr;

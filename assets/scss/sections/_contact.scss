@@ -59,10 +59,17 @@
     background-color: $color-gray;
     @include border-radius(50%);
     margin-right: 15px;
+    color: $color-accent; // Добавляем акцентный цвет для иконок
+    transition: background-color $transition-fast, transform $transition-fast;
     
-    img {
+    svg {
       width: 20px;
       height: 20px;
+    }
+    
+    &:hover {
+      background-color: lighten($color-gray, 5%);
+      transform: scale(1.05);
     }
   }
   
@@ -81,7 +88,7 @@
 // Стили для кнопки Telegram
 .telegram-button {
   @include flex(row, center, center);
-  background-color: #0088cc; // Фирменный цвет Telegram
+  background-color: $color-accent; // Используем акцентный цвет из цветовой гаммы сайта
   color: $color-white;
   padding: 16px 30px;
   border-radius: 30px;
@@ -89,21 +96,21 @@
   font-weight: $font-weight-bold;
   font-size: $font-size-md;
   transition: all $transition-normal;
-  box-shadow: 0 4px 15px rgba(#0088cc, 0.3);
+  box-shadow: 0 4px 15px rgba($color-accent, 0.3);
   width: 100%;
   max-width: 300px;
   
   &:hover {
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(#0088cc, 0.5);
-    background-color: lighten(#0088cc, 5%);
+    box-shadow: 0 6px 20px rgba($color-accent, 0.5);
+    background-color: lighten($color-accent, 5%);
     color: $color-white;
     text-decoration: none;
   }
   
   &:active {
     transform: translateY(-1px);
-    box-shadow: 0 3px 10px rgba(#0088cc, 0.4);
+    box-shadow: 0 3px 10px rgba($color-accent, 0.4);
   }
   
   &__icon {

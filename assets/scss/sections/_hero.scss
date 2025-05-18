@@ -23,6 +23,8 @@
     @include media-breakpoint-down(lg) {
       @include flex(column, flex-start, stretch);
       height: auto;
+      position: relative; // Добавляем для позиционирования элементов
+      border-bottom: none; // Убираем возможную нижнюю границу
     }
   }
   
@@ -51,7 +53,8 @@
     
     @include media-breakpoint-down(lg) {
       width: 100%;
-      height: 300px;
+      height: 400px; // Увеличиваем высоту для размещения текста поверх
+      border-bottom: none; // Убираем возможную нижнюю границу
     }
   }
   
@@ -63,6 +66,9 @@
     @include media-breakpoint-down(lg) {
       width: 100%;
       padding: 30px;
+      position: static;
+      border-top: none; // Убираем возможную верхнюю границу
+      box-shadow: none; // Убираем возможную тень
     }
   }
   
@@ -82,6 +88,11 @@
       height: 3px;
       background-color: $color-accent;
     }
+    
+    @include media-breakpoint-down(lg) {
+      position: static;
+      border-bottom: none; // Убираем возможную нижнюю границу
+    }
   }
   
   &__position {
@@ -100,6 +111,11 @@
       transform: translateX(5px);
       color: lighten($color-accent, 10%);
     }
+    
+    @include media-breakpoint-down(lg) {
+      position: static;
+      border-bottom: none; // Убираем возможную нижнюю границу
+    }
   }
   
   &__description {
@@ -107,6 +123,54 @@
     color: $color-white-dim;
     font-size: $font-size-md;
     line-height: 1.7;
+    
+    @include media-breakpoint-down(lg) {
+      position: absolute;
+      top: 40px; // Поднимаем выше для большей видимости
+      right: 0;
+      font-size: $font-size-sm; // Уменьшаем размер шрифта
+      line-height: 1.5; // Уменьшаем межстрочный интервал
+      color: $color-white; // Делаем текст белым для лучшей видимости на фото
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8); // Добавляем тень для лучшей читаемости
+      max-height: 320px; // Увеличиваем максимальную высоту
+      overflow-y: auto;
+      border: none; // Убираем все границы
+      box-shadow: none; // Убираем тень
+      word-wrap: break-word; // Добавляем перенос слов
+      overflow-x: hidden; // Скрываем горизонтальную прокрутку
+      
+      // Точное позиционирование в правой половине
+      width: 50%; // Ширина ровно 50% от контейнера
+      left: 50%; // Начинаем точно с середины
+      padding: 20px; // Равномерные отступы
+      
+      // Убираем возможную серую полосу внизу текста
+      &:after {
+        display: none;
+      }
+      
+      // Убираем возможные стили скроллбара, которые могут создавать серую полосу
+      &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background: transparent;
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        background: transparent;
+      }
+    }
+    
+    @include media-breakpoint-down(sm) {
+      font-size: 13px; // Еще меньше для очень маленьких экранов
+      top: 30px; // Поднимаем еще выше
+      max-height: 340px; // Увеличиваем максимальную высоту еще больше
+      
+      // Сохраняем точное позиционирование в правой половине
+      width: 50%;
+      left: 50%;
+      padding: 15px;
+    }
   }
   
   &__button {

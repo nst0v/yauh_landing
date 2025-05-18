@@ -82,27 +82,43 @@
       width: 40px;
       height: 40px;
       @include flex(row, center, center);
-      background-color: $color-gray;
       @include border-radius(50%);
       margin-left: 10px;
-      transition: background-color $transition-fast;
+      transition: transform $transition-fast, background-color $transition-fast, color $transition-fast;
+      color: $color-white-dim;
+      background-color: $color-gray;
       
       &:first-child {
         margin-left: 0;
       }
       
-      &:hover {
-        background-color: $color-accent;
+      // ВКонтакте (первая иконка)
+      &:nth-child(1):hover {
+        transform: translateY(-3px);
+        background-color: #4C75A3; // Фирменный цвет ВКонтакте
+        color: $color-white;
+        box-shadow: 0 5px 15px rgba(#4C75A3, 0.3);
       }
       
-      img {
-        width: 20px;
-        height: 20px;
+      // Instagram (вторая иконка)
+      &:nth-child(2):hover {
+        transform: translateY(-3px);
+        background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); // Градиент Instagram
+        color: $color-white;
+        box-shadow: 0 5px 15px rgba(#dc2743, 0.3);
+      }
+      
+      // Telegram (третья иконка)
+      &:nth-child(3):hover {
+        transform: translateY(-3px);
+        background-color: #0088cc; // Фирменный цвет Telegram
+        color: $color-white;
+        box-shadow: 0 5px 15px rgba(#0088cc, 0.3);
       }
     }
   }
   
-    &__bottom {
+  &__bottom {
     @include flex(row, space-between, center);
     
     @include media-breakpoint-down(md) {
@@ -120,7 +136,15 @@
     }
   }
   
-  &__policy {
+  &__links {
+    @include flex(row, flex-end, center);
+    
+    @include media-breakpoint-down(md) {
+      @include flex(column, center, center);
+    }
+  }
+  
+  &__policy, &__developer {
     color: $color-white-dim;
     font-size: $font-size-sm;
     transition: color $transition-fast;
@@ -130,5 +154,25 @@
       text-decoration: none;
     }
   }
+  
+  &__divider {
+    color: $color-white-dim;
+    margin: 0 10px;
+    
+    @include media-breakpoint-down(md) {
+      display: none;
+    }
+  }
+  
+  &__developer {
+    position: relative;
+    
+    @include media-breakpoint-down(md) {
+      margin-top: 10px;
+    }
+    
+    &:hover {
+      color: $color-accent;
+    }
+  }
 }
-
